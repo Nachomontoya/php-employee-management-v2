@@ -24,10 +24,14 @@ class Database{
       ];
 
       $pdo = new PDO($connection, $this->user, $this->password, $options);
-
+      //! This is just an echo to know that we are correctly connected;
+      echo "Succesfully connected to te database";
       return $pdo;
     } catch (PDOException $error) {
       echo $error->getMessage();
     }
   }  
 }
+
+$connect = new Database();
+$connect->connect();
