@@ -1,4 +1,4 @@
-$('#formLogin').on('submit', login);
+$("#formLogin").on("submit", login);
 
 function login(e) {
   e.preventDefault();
@@ -9,11 +9,11 @@ function login(e) {
     cache: false,
     data: formData,
     success: function () {
-      $('.text-danger').text('');
+      $(".text-danger").text("");
       window.location.href = "./src/dashboard.php";
     },
     error: function () {
-      $('.text-danger').text('Wrong email or password');
-    }
+      $(".text-danger").text("Wrong email or password");
+    },
   });
 }

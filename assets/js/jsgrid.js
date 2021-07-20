@@ -9,7 +9,10 @@ $.ajax({
     $("#navEmployee")
       .attr("href", "./employee.php?new=true")
       .removeClass("disabled");
-      $("#navEmployee svg use").attr('xlink:href', '../node_modules/bootstrap-icons/bootstrap-icons.svg#person-plus-fill');
+    $("#navEmployee svg use").attr(
+      "xlink:href",
+      "../node_modules/bootstrap-icons/bootstrap-icons.svg#person-plus-fill"
+    );
   })
   .fail(function (response) {})
   .always(function () {});
