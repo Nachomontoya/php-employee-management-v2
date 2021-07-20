@@ -18,7 +18,7 @@ function logout()
     http_response_code(200);
 }
 
-$_SESSION['lifeTime'] = 5;
+$_SESSION['lifeTime'] = 3600;
 if (isset($_SESSION['userId'])) {
     if (time() - $_SESSION['time'] > $_SESSION['lifeTime']) {
         logout();
