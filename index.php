@@ -66,4 +66,5 @@ echo '</pre>';
 echo '<pre>';
 var_dump($router->param);
 echo '</pre>';
+
 ?>
