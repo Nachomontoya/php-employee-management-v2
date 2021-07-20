@@ -1,14 +1,13 @@
 <?php
 session_start();
 
-// function goLogin()
-// {
-//     $url = $_SERVER['REQUEST_URI'];
-//     echo $url;
-//     if (!str_contains($url, 'index.php')) {
-//         header("Location: ./index.php");
-//     }  
-// }
+function goLogin()
+{
+    $url = $_SERVER['REQUEST_URI'];
+    if (!str_contains($url, 'index.php')) {
+        header("Location: ./index.php");
+    }
+}
 
 function logout()
 {

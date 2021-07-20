@@ -1,7 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php require_once('./src/library/sessionHelper.php'); ?>
-
+<!-- <!DOCTYPE html>
+<html lang="en"> -->
+<?php
+// require_once('./src/library/sessionHelper.php');
+?>
+<!-- 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,4 +43,28 @@
 </body>
 <script src="./assets/js/index.js"></script>
 
-</html>
+</html> -->
+
+<?php
+
+require_once 'libs/router.php';
+
+$router = new Router();
+
+echo '<pre>';
+var_dump($router->uri);
+echo '</pre>';
+
+echo '<pre>';
+var_dump($router->controller);
+echo '</pre>';
+
+echo '<pre>';
+var_dump($router->method);
+echo '</pre>';
+
+echo '<pre>';
+var_dump($router->param);
+echo '</pre>';
+
+?>
