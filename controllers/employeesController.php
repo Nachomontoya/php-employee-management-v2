@@ -16,15 +16,13 @@ class EmployeesController extends Controller
 
     public function getAllEmployees()
     {
-        echo '<pre>';
-        var_dump($this->model->getAll());
-        echo '</pre>';
+        $data = $this->model->getAll();
+        echo json_encode($data);
+        http_response_code(200);
     }
 
     public function getEmployeeById(int $id)
     {
-        echo '<pre>';
-        var_dump($this->model->getById($id));
-        echo '</pre>';
+        $this->model->getById($id);
     }
 }

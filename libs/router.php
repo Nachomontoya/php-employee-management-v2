@@ -27,17 +27,17 @@ class Router
 
     function setController()
     {
-        $this->controller = isset($this->uri[3]) ? $this->uri[3] : '';
+        $this->controller = isset($this->uri[2]) ? $this->uri[2] : '';
     }
 
     function setMethod()
     {
-        $this->method = isset($this->uri[4]) ? $this->uri[4] : '';
+        $this->method = isset($this->uri[3]) ? $this->uri[3] : '';
     }
 
     function setParam()
     {
-        $this->param = isset($this->uri[5]) ? $this->uri[5] : '';
+        $this->param = isset($this->uri[4]) ? $this->uri[4] : '';
     }
 
     public function __get($property)
