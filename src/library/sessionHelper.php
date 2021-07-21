@@ -14,11 +14,12 @@ function logout()
     unset($_SESSION['userId']);
     session_destroy();
     session_unset();
-    goLogin();
+    // goLogin();
+    header("Location: ./index.php");
     http_response_code(200);
 }
 
-$_SESSION['lifeTime'] = 3600;
+$_SESSION['lifeTime'] = 3;
 if (isset($_SESSION['userId'])) {
     if (time() - $_SESSION['time'] > $_SESSION['lifeTime']) {
         logout();
@@ -28,6 +29,7 @@ if (isset($_SESSION['userId'])) {
             header('Location: ./src/dashboard.php');
         }
     }
-} else {
-    goLogin();
-}
+} 
+// else {
+//     goLogin();
+// }
