@@ -1,21 +1,24 @@
 <?php
 
-require_once '../config/db.php';
+require_once './config/db.php';
 
-class Database{
+class Database
+{
   private $host;
   private $db;
   private $user;
   private $password;
 
-  public function __construct(){
+  public function __construct()
+  {
     $this->host = HOST;
     $this->db = DATABASE;
-    $this->user = User;
-    $this->password = Password;
+    $this->user = USER;
+    $this->password = PASSWORD;
   }
 
-  public function connect() {
+  public function connect()
+  {
     try {
       $connection = "mysql:host=" . $this->host . ";dbname=" . $this->db . ";charset=utf8mb4";
       $options = [
@@ -30,8 +33,8 @@ class Database{
     } catch (PDOException $error) {
       echo $error->getMessage();
     }
-  }  
+  }
 }
 
-$connect = new Database();
-$connect->connect();
+// $connect = new Database();
+// $connect->connect();
