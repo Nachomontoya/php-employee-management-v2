@@ -1,4 +1,4 @@
-const employeeUrl = "./library/employeeController.php";
+const employeeUrl = "./employeesController/getAllEmployees";
 
 $.ajax({
   url: employeeUrl,

@@ -1,7 +1,6 @@
 <?php
 
-$documentRoot = getcwd();
-define("BASE_PATH", $documentRoot);
+define("BASE_PATH", '.');
 
 define("LIBS", BASE_PATH . '/libs');
 
