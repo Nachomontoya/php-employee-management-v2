@@ -79,13 +79,15 @@ class Router
         if(!isset($_SESSION['logged'])) {
             $fileController = CONTROLLERS . '/loginController.php';
             $classController =  'LoginController';
-
+            
             if (file_exists($fileController)) {
                 require_once($fileController);
-    
+
+
                 $controller = new $classController;
-                $controller->loadModel($this->controller);
-                $controller->{$this->method}($this->param);
+                $controller->loadModel('login');
+                $controller->getAllUsers();
+                $controller->render();
             } else {
                 // Handle Errors
                 echo "Error loading controller";

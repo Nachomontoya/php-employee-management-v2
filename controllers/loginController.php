@@ -1,7 +1,4 @@
 <?php
-
-require_once '../libs/classes/controller.php';
-
 class LoginController extends Controller{
 
   function __construct()
@@ -15,14 +12,14 @@ class LoginController extends Controller{
         $this->view->render('login/index');
     }
 
-
-
-    // public function getAllEmployees()
-    // {
-    //     echo '<pre>';
-    //     var_dump($this->model->getAll());
-    //     echo '</pre>';
-    // }
+    public function getAllUsers()
+    {
+      $data = $this->model->getAll();
+      //TODO Esto convierte el objeto en array. Hay que hacer el login del check, generar una variable de session para que te muestre el contenido o no.
+      $myArray = json_decode(json_encode($data[0]), true);
+      var_dump($myArray);
+      http_response_code(200);
+    }
 
     // public function getEmployeeById(int $id)
     // {
