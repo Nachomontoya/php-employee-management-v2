@@ -1,6 +1,6 @@
 <?php
 
-abstract class View
+class View
 {
 
     function __construct()
