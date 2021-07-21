@@ -13,12 +13,12 @@ abstract class Controller
 
     function loadModel($model)
     {
-        $url = 'models/' . $model . '.php';
+        $url = MODELS . '/' . $model . 'Model.php';
 
         if (file_exists($url)) {
             require $url;
 
-            $modelName = $model . 'Model';
+            $modelName = ucfirst($model) . 'Model';
             $this->model = new $modelName();
         }
     }
