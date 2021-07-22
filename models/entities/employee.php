@@ -4,6 +4,7 @@ class Employee
 {
 
     function __construct(
+        int $id,
         string $name,
         string $lastName,
         string $email,
@@ -15,6 +16,7 @@ class Employee
         int $postalCode,
         string $phoneNumber
     ) {
+        $this->id = $id;
         $this->name = $name;
         $this->lastName = $lastName;
         $this->email = $email;

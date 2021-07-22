@@ -34,8 +34,17 @@ function insertItemHandler(item) {
 function deleteItemHandler(item) {
   return $.ajax({
     type: "DELETE",
-    url: employeeUrl,
+    url: "./employees/deleteEmployee/" + item.id,
     data: item,
+    dataType: "json",
+    // success: function (response) {
+    //   console.log(response);
+    // },
+    error: function (xhr, status) {
+      console.log(xhr, status);
+      let err = JSON.parse(xhr.responseText);
+      renderError(err.message);
+    },
   });
 }
 
@@ -57,15 +66,24 @@ $("#jsGrid").jsGrid({
     loadData: function (response) {
       return $.ajax({
         type: "GET",
-        url: employeeUrl,
+        url: "./employees/getAllEmployees",
         dataType: "json",
         // data: response,
+        // success: function (response) {
+        //   console.log(response);
+        // },
+        error: function (xhr, status) {
+          console.log(xhr, status);
+          let err = JSON.parse(xhr.responseText);
+          renderError(err.message);
+        },
       });
     },
     insertItem: function (item) {
       insertItemHandler(item);
     },
     deleteItem: function (item) {
+      console.log(item);
       deleteItemHandler(item);
     },
   },
@@ -134,3 +152,16 @@ $("#jsGrid").jsGrid({
   ],
 });
 // }
+
+function renderError(message = "Error", element = "header") {
+  $(element).after(
+    `<div class="container mt-3">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Error!</h4>
+        <hr>
+        <p>${message}</p>
+        <!-- <p class="mb-0">Made by Brahim Benalia & Nacho Montoya</p> -->
+    </div>
+    </div>`
+  );
+}
