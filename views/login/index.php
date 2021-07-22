@@ -25,7 +25,7 @@
     <div class="d-flex login-container align-items-center justify-content-center">
         <div class="login-form p-5 rounded">
             <h3>Login</h3>
-            <form id="formLogin" action="" method="post">
+            <form id="formLogin" action="login/signIn" method="POST">
                 <div class="mb-3">
                     <input type="email" class="form-control" placeholder="Your Email *" value="" name="email" required />
                 </div>
@@ -40,6 +40,6 @@
         </div>
     </div>
 </body>
-<script src="./assets/js/index.js"></script>
+<!-- <script src="./assets/js/index.js"></script> -->
 
 </html>

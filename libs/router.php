@@ -14,9 +14,7 @@ class Router
         $this->setMethod();
         $this->setParam();
 
-        if ($this->checkLogin()) {
-            $this->loadUriRequest();
-        }
+        $this->loadUriRequest();
     }
 
     function setUri()
@@ -49,15 +47,26 @@ class Router
 
     public function loadUriRequest()
     {
+
         if (empty($this->controller)) {
-            $fileController = CONTROLLERS . '/' . 'employeesController.php';
+            $fileController = CONTROLLERS . '/' . 'loginController.php';
             require_once($fileController);
 
-            $controller = new EmployeesController();
-            $controller->loadModel('employeesModel');
+            $controller = new LoginController();
             $controller->render();
             return;
         }
+
+
+        // if (empty($this->controller)) {
+        //     $fileController = CONTROLLERS . '/' . 'employeesController.php';
+        //     require_once($fileController);
+
+        //     $controller = new EmployeesController();
+        //     $controller->loadModel('employeesModel');
+        //     $controller->render();
+        //     return;
+        // }
 
         $fileController = CONTROLLERS . '/' . $this->controller . 'Controller.php';
         $classController =  ucfirst($this->controller) . 'Controller';
@@ -70,32 +79,9 @@ class Router
             $controller->{$this->method}($this->param);
         } else {
             // Handle Errors
+            var_dump($this->controller);
             echo "Error loading controller";
             // $controller = new FailureController();
-        }
-    }
-
-    public function checkLogin() {
-        if(!isset($_SESSION['logged'])) {
-            $fileController = CONTROLLERS . '/loginController.php';
-            $classController =  'LoginController';
-            
-            if (file_exists($fileController)) {
-                require_once($fileController);
-
-
-                $controller = new $classController;
-                $controller->loadModel('login');
-                $controller->getAllUsers();
-                $controller->render();
-            } else {
-                // Handle Errors
-                echo "Error loading controller";
-                // $controller = new FailureController();
-            }
-            return false;
-        }   else {
-            return true;
         }
     }
 }

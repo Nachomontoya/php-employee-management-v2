@@ -1,7 +1,7 @@
 <?php
 class LoginController extends Controller{
 
-  function __construct()
+  public function __construct()
     {
         parent::__construct();
     }
@@ -10,6 +10,12 @@ class LoginController extends Controller{
     {
         //
         $this->view->render('login/index');
+    }
+
+    public function signIn() {
+      $result = $this->model->checkUser($_POST);
+      echo 'hey';
+      echo json_encode($result);
     }
 
     public function getAllUsers()
