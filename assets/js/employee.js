@@ -1,10 +1,10 @@
 "use strict";
 const employeeUrl = "./library/employeeController.php";
-let userId;
+// let userId;
 
-function setUserId(id) {
-  userId = id;
-}
+// function setUserId(id) {
+//   userId = id;
+// }
 
 $(".needs-validation").on("submit", function (event) {
   event.preventDefault();
@@ -37,40 +37,17 @@ $(".needs-validation").on("submit", function (event) {
 
 function populateEmployeeForm() {
   $.ajax({
-    url: `${employeeUrl}/?id=${userId}`,
+    // url: `${employeeUrl}/?id=${userId}`,
+    url: `employees/getEmployeeById/${userId}`,
     method: "GET",
+    dataType: "json",
   })
     .done((employee) => {
-      $("#name").val(typeof employee.name !== "undefined" ? employee.name : "");
-      $("#lastName").val(
-        typeof employee.lastName !== "undefined" ? employee.lastName : ""
-      );
-      $("#email").val(
-        typeof employee.email !== "undefined" ? employee.email : ""
-      );
-      $("#gender").val(
-        typeof employee.gender !== "undefined" ? employee.gender : ""
-      );
-      $("#city").val(typeof employee.city !== "undefined" ? employee.city : "");
-      $("#streetAddress").val(
-        typeof employee.streetAddress !== "undefined"
-          ? employee.streetAddress
-          : ""
-      );
-      $("#state").val(
-        typeof employee.state !== "undefined" ? employee.state : ""
-      );
-      $("#age").val(typeof employee.age !== "undefined" ? employee.age : "");
-      $("#postalCode").val(
-        typeof employee.postalCode !== "undefined" ? employee.postalCode : ""
-      );
-      $("#phoneNumber").val(
-        typeof employee.phoneNumber !== "undefined" ? employee.phoneNumber : ""
-      );
-      $("#navEmployee").removeClass("text-secondary").addClass("text-white");
-      $("#navDashboard").addClass("text-secondary").removeClass("text-white");
+      console.log("done");
+      setEmployeeForm(employee);
     })
     .fail((response) => {
+      console.log("fail");
       const errorModal = new bootstrap.Modal(
         document.getElementById("errorModal"),
         {
@@ -120,4 +97,29 @@ function handleNewEmployee(event) {
   }
 
   form.classList.add("was-validated");
+}
+
+function setEmployeeForm(employee) {
+  $("#name").val(typeof employee.name !== "undefined" ? employee.name : "");
+  $("#lastName").val(
+    typeof employee.lastName !== "undefined" ? employee.lastName : ""
+  );
+  $("#email").val(typeof employee.email !== "undefined" ? employee.email : "");
+  $("#gender").val(
+    typeof employee.gender !== "undefined" ? employee.gender : ""
+  );
+  $("#city").val(typeof employee.city !== "undefined" ? employee.city : "");
+  $("#streetAddress").val(
+    typeof employee.streetAddress !== "undefined" ? employee.streetAddress : ""
+  );
+  $("#state").val(typeof employee.state !== "undefined" ? employee.state : "");
+  $("#age").val(typeof employee.age !== "undefined" ? employee.age : "");
+  $("#postalCode").val(
+    typeof employee.postalCode !== "undefined" ? employee.postalCode : ""
+  );
+  $("#phoneNumber").val(
+    typeof employee.phoneNumber !== "undefined" ? employee.phoneNumber : ""
+  );
+  $("#navEmployee").removeClass("text-secondary").addClass("text-white");
+  $("#navDashboard").addClass("text-secondary").removeClass("text-white");
 }

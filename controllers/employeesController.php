@@ -26,9 +26,22 @@ class EmployeesController extends Controller
         }
     }
 
-    public function getEmployeeById(int $id)
-    {
-        $this->model->getById($id);
+    public function renderEmployee(int $id)
+    {   
+        $this->view->id = $id;
+        $this->view->render('employees/employee');
+    }
+
+    public function getEmployeeById(int $id) {
+        try {
+            $result = $this->model->getById($id);
+            $this->view->id = $id;
+            http_response_code(200);
+            echo json_encode($result);
+        }   catch (Throwable $th) {
+            http_response_code(400);
+            echo json_encode(['message' => $th->getMessage()]);
+        }
     }
 
     public function deleteEmployee($id)
