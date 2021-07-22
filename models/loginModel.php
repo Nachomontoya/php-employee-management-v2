@@ -26,6 +26,7 @@ class LoginModel extends Model{
 
                 $items[] = $item;
             }
+
             return $items;
         } catch (PDOException $e) {
             return [];

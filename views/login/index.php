@@ -36,7 +36,11 @@
                     <input type="submit" class="btn btnSubmit" value="Login" />
                 </div>
             </form>
-            <div class="text-danger"></div>
+            <div class="text-danger">
+                <?php
+                   echo $this->error;
+                ?>
+            </div>
         </div>
     </div>
 </body>

@@ -77,7 +77,7 @@ class Router
             require_once($fileController);
             $controller = new $classController;
             $controller->loadModel($this->controller);
-
+            
             try {
                 if (!empty($this->method)) {
                     $controller->{$this->method}($this->param);
