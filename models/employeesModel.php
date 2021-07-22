@@ -1,6 +1,7 @@
 <?php
 
 require_once(MODELS . '/entities/employee.php');
+require_once(CONTROLLERS . '/errorController.php');
 
 class EmployeesModel extends Model
 {
@@ -18,6 +19,7 @@ class EmployeesModel extends Model
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                 $item = new Employee(
+                    $row['id'],
                     $row['name'],
                     $row['lastname'],
                     $row['email'],
@@ -48,6 +50,20 @@ class EmployeesModel extends Model
             return $query->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             return [];
+        }
+    }
+
+    public function delete(int $id)
+    {
+        $query = $this->db->connect()->prepare("DELETE FROM employees WHERE id = :id");
+        try {
+            $query->execute([
+                'id' => $id
+            ]);
+            return true;
+        } catch (PDOException $e) {
+            // return false;
+            throw new Exception($e->getMessage());
         }
     }
 }
