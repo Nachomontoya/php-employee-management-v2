@@ -49,12 +49,23 @@ class Router
 
     public function loadUriRequest()
     {
+
+        // if (empty($this->controller)) {
+        //     $fileController = CONTROLLERS . '/' . 'employeesController.php';
+        //     require_once($fileController);
+
+        //     $controller = new EmployeesController();
+        //     $controller->loadModel('employeesModel');
+        //     $controller->render();
+        //     return;
+        // }
+
         if (empty($this->controller)) {
-            $fileController = CONTROLLERS . '/' . 'employeesController.php';
+            $fileController = CONTROLLERS . '/' . 'loginController.php';
             require_once($fileController);
 
-            $controller = new EmployeesController();
-            $controller->loadModel('employeesModel');
+            $controller = new LoginController();
+            // $controller->loadModel('employeesModel');
             $controller->render();
             return;
         }

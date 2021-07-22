@@ -27,17 +27,9 @@ class Database
       ];
 
       $pdo = new PDO($connection, $this->user, $this->password, $options);
-      //! This is just an echo to know that we are correctly connected;
-      // echo "Succesfully connected to te database";
       return $pdo;
     } catch (PDOException $error) {
-      // echo $error->getMessage();
-      // http_response_code(400);
-      // echo json_encode(['message' => $error->getMessage()]);
       throw new Exception($error->getMessage());
     }
   }
 }
-
-// $connect = new Database();
-// $connect->connect();
