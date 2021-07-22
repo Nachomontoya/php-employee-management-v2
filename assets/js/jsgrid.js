@@ -60,6 +60,11 @@ $("#jsGrid").jsGrid({
         url: employeeUrl,
         dataType: "json",
         // data: response,
+        error: function (xhr, status) {
+          console.log(xhr, status);
+          let err = JSON.parse(xhr.responseText);
+          renderError(err.message);
+        },
       });
     },
     insertItem: function (item) {
@@ -134,3 +139,16 @@ $("#jsGrid").jsGrid({
   ],
 });
 // }
+
+function renderError(message = "Error", element = "header") {
+  $(element).after(
+    `<div class="container mt-3">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Error!</h4>
+        <hr>
+        <p>${message}</p>
+        <!-- <p class="mb-0">Made by Brahim Benalia & Nacho Montoya</p> -->
+    </div>
+    </div>`
+  );
+}

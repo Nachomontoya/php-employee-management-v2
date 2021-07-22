@@ -31,7 +31,10 @@ class Database
       // echo "Succesfully connected to te database";
       return $pdo;
     } catch (PDOException $error) {
-      echo $error->getMessage();
+      // echo $error->getMessage();
+      // http_response_code(400);
+      // echo json_encode(['message' => $error->getMessage()]);
+      throw new Exception($error->getMessage());
     }
   }
 }
