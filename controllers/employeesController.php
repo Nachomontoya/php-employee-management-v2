@@ -26,23 +26,22 @@ class EmployeesController extends Controller
         }
     }
 
-    // public function renderEmployee(int $id)
-    // {   
-    //     $this->view->id = $id;
-    //     $this->view->render('employees/employee');
-    // }
+    public function renderEmployee($id)
+    {
+        $this->view->id = $id;
+        $this->view->render('employees/employee');
+    }
 
-    public function getEmployeeById(int $id) {
+    public function getEmployeeById($id)
+    {
         try {
             $result = $this->model->getById($id);
-            $this->view->result = $result;
-            // $this->view->id = $id;
-            $this->view->render('employees/employee');
-            // http_response_code(200);
-            // echo json_encode($result);
+            $this->view->id = $id;
+            echo json_encode($result);
+            http_response_code(200);
         }   catch (Throwable $th) {
-            // http_response_code(400);
-            // echo json_encode(['message' => $th->getMessage()]);
+            http_response_code(400);
+            echo json_encode(['message' => $th->getMessage()]);
         }
     }
 
@@ -52,7 +51,6 @@ class EmployeesController extends Controller
             $id = $_UPDATE['id'];
             $this->model->update($id, $_UPDATE);
             http_response_code(200);
-            // echo json_encode($_UPDATE);
             echo json_encode(['message' =>  "employee {$_UPDATE['id']} updated succesfully"]);
         }  catch (Throwable $th) {
             http_response_code(400);
@@ -65,7 +63,6 @@ class EmployeesController extends Controller
         try {
             parse_str(file_get_contents("php://input"), $_DELETE);
             $id = $_DELETE['id'];
-
             $this->model->delete($id);
             http_response_code(200);
             echo json_encode(['message' =>  "employee {$_DELETE['name']} deleted"]);

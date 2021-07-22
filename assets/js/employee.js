@@ -38,15 +38,31 @@ $(".needs-validation").on("submit", function (event) {
   }
 });
 
+$(document).ready(function () {
+  console.log("ready!");
+  populateEmployeeForm();
+});
+
 function populateEmployeeForm() {
+  console.log(`${baseUrl}employees/getEmployeeById/${userId}`);
+
   $.ajax({
     // url: `${employeeUrl}/?id=${userId}`,
     url: `${baseUrl}employees/getEmployeeById/${userId}`,
     method: "GET",
     dataType: "json",
+    // success: function (response) {
+    //   console.log(response);
+    // },
+    // error: function (xhr, status) {
+    //   console.log(xhr, status);
+    //   // let err = JSON.parse(xhr.responseText);
+    //   // renderError(err.message);
+    // },
   })
     .done((employee) => {
       console.log("done");
+      console.log(employee);
       setEmployeeForm(employee);
     })
     .fail((response) => {
