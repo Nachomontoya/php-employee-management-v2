@@ -59,7 +59,7 @@ $("#jsGrid").jsGrid({
   autoload: true,
   // filtering: true,
   rowDoubleClick: function (item) {
-    window.location.replace("./employee.php?id=" + item.item.id);
+    window.location.replace("./employees/renderEmployee/" + item.item.id);
   },
 
   controller: {
@@ -83,7 +83,6 @@ $("#jsGrid").jsGrid({
       insertItemHandler(item);
     },
     deleteItem: function (item) {
-      console.log(item);
       deleteItemHandler(item);
     },
   },
