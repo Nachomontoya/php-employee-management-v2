@@ -61,12 +61,13 @@ class Router
         // }
 
         if (empty($this->controller)) {
-            $fileController = CONTROLLERS . '/' . 'loginController.php';
-            require_once($fileController);
+            //TODO : login controller
+            // $fileController = CONTROLLERS . '/' . 'loginController.php';
+            // require_once($fileController);
 
-            $controller = new LoginController();
+            // $controller = new LoginController();
             // $controller->loadModel('employeesModel');
-            $controller->render();
+            // $controller->render();
             return;
         }
 
