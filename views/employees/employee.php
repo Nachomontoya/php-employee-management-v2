@@ -24,7 +24,7 @@
 
 <body class="d-flex flex-column h-100">
     <?php
-      include "./assets/html/header.html";
+    include "./assets/html/header.html";
     ?>
 
     <div class="container-fluid">
@@ -131,7 +131,7 @@
                     This id is not related to any user
                 </div>
                 <div class="modal-footer border-0">
-                    <a href="./dashboard.php" class="btn btn-light mx-auto">Go back to dashboard</a>
+                    <a href="<?= BASE_URL ?>" class="btn btn-light mx-auto">Go back to dashboard</a>
                 </div>
             </div>
         </div>
@@ -157,7 +157,8 @@
     include "./assets/html/footer.html";
     ?>
     <script>
-      let userId = <?= $this->id ?>;
+        let userId = <?= $this->id ?>;
+        let baseUrl = '<?= BASE_URL ?>';
     </script>
     <script type="text/javascript" src="<?= BASE_URL ?>/assets/js/employee.js"></script>
     <?php

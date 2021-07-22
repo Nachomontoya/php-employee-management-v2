@@ -26,19 +26,20 @@ class EmployeesController extends Controller
         }
     }
 
-    public function renderEmployee(int $id)
-    {   
+    public function renderEmployee($id)
+    {
         $this->view->id = $id;
         $this->view->render('employees/employee');
     }
 
-    public function getEmployeeById(int $id) {
+    public function getEmployeeById($id)
+    {
         try {
             $result = $this->model->getById($id);
             $this->view->id = $id;
-            http_response_code(200);
             echo json_encode($result);
-        }   catch (Throwable $th) {
+            http_response_code(200);
+        } catch (Throwable $th) {
             http_response_code(400);
             echo json_encode(['message' => $th->getMessage()]);
         }
@@ -49,7 +50,6 @@ class EmployeesController extends Controller
         try {
             parse_str(file_get_contents("php://input"), $_DELETE);
             $id = $_DELETE['id'];
-
             $this->model->delete($id);
             http_response_code(200);
             echo json_encode(['message' =>  "employee {$_DELETE['name']} deleted"]);
