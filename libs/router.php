@@ -1,5 +1,7 @@
 <?php
 
+require_once(CONTROLLERS . '/errorController.php');
+
 class Router
 {
     protected $uri;
@@ -15,7 +17,6 @@ class Router
         $this->setParam();
 
         $this->loadUriRequest();
-
     }
 
     function setUri()
@@ -31,7 +32,7 @@ class Router
 
     function setMethod()
     {
-        $this->method = isset($this->uri[3]) ? $this->uri[3] : '';
+        $this->method = isset($this->uri[3]) ? $this->uri[3] : 'render';
     }
 
     function setParam()
@@ -63,14 +64,22 @@ class Router
 
         if (file_exists($fileController)) {
             require_once($fileController);
-
             $controller = new $classController;
             $controller->loadModel($this->controller);
-            $controller->{$this->method}($this->param);
+
+            try {
+                if (!empty($this->method)) {
+                    $controller->{$this->method}($this->param);
+                }
+            } catch (Throwable $th) {
+                $controller = new errorController(
+                    'Error loading method ' . $this->method
+                );
+            }
         } else {
-            // Handle Errors
-            echo "Error loading controller";
-            // $controller = new FailureController();
+            $controller = new errorController(
+                'Error loading controller ' . $this->controller
+            );
         }
     }
 }
