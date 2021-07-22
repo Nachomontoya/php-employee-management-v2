@@ -16,18 +16,21 @@ $(".needs-validation").on("submit", function (event) {
     });
     updatedEmployee["id"] = userId;
     event.target.classList.add("was-validated");
-
+    console.log(`${baseUrl}employees/updateEmployee/${userId}`);
+    console.log(updatedEmployee);
     $.ajax({
-      url: employeeUrl,
+      url: `${baseUrl}employees/updateEmployee/${userId}`,
       method: "UPDATE",
-      data: { updatedEmployee: updatedEmployee },
+      data: updatedEmployee,
     })
-      .done((_) => {
+      .done((response) => {
+        console.log(response);
         $("#responseMsg")
           .text("Employee Update Success")
           .attr("class", "text-success");
       })
-      .fail((_) => {
+      .fail((response) => {
+        console.log(response);
         $("#responseMsg")
           .text("Something when wrong")
           .attr("class", "text-danger");
@@ -38,7 +41,7 @@ $(".needs-validation").on("submit", function (event) {
 function populateEmployeeForm() {
   $.ajax({
     // url: `${employeeUrl}/?id=${userId}`,
-    url: `employees/getEmployeeById/${userId}`,
+    url: `${baseUrl}employees/getEmployeeById/${userId}`,
     method: "GET",
     dataType: "json",
   })
