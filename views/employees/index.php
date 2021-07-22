@@ -26,12 +26,12 @@
 </head>
 
 <body class="d-flex flex-column h-100">
+
     <?php
-    include_once "./assets/html/header.html";
+    include_once VIEWS . "/header.php";
     ?>
 
     <div class="container-fluid">
-
         <main class="col-lg-10 p-2 mx-auto gy-2">
             <div>
                 <h2>Employees</h2>
@@ -40,9 +40,8 @@
         </main>
     </div>
 
-
     <?php
-    include_once "./assets/html/footer.html";
+    include_once  VIEWS . "/footer.php";
     ?>
 </body>
 
