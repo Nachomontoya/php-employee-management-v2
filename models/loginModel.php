@@ -9,12 +9,12 @@ class LoginModel extends Model{
         parent::__construct();
     }
   
-  public function checkUser($params)
+  public function get($params)
   {
         $email = $params['email'];
-        $password = $params['password'];
+        // $password = $params['password'];
         try {
-            $items = [];
+            $item = [];
             $query = $this->db->connect()->query("SELECT * FROM users WHERE email = '{$email}'");
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                 $item = new User(
@@ -24,12 +24,12 @@ class LoginModel extends Model{
                     $row['password']
                 );
 
-                $items[] = $item;
+                // $items[] = $item;
             }
+            return $item;
 
-            return $items;
         } catch (PDOException $e) {
-            return [];
+            throw new Exception($e->getMessage());
         }
   }
 }

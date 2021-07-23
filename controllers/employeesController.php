@@ -1,11 +1,16 @@
 <?php
-
+require_once(LIBS . '/session.php');
 class EmployeesController extends Controller
 {
 
     function __construct()
     {
         parent::__construct();
+
+        $this->session = new Session();
+        $this->session->init();
+        if(empty($this->session->get('email')))
+            header('Location:'. BASE_URL);
     }
 
     public function render()

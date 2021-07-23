@@ -12,6 +12,6 @@ class User
         $this->name = $id;
         $this->lastName = $name;
         $this->email = $email;
-        $this->gender = $password;
+        $this->password = $password;
     }
 }

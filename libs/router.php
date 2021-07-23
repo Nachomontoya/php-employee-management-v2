@@ -49,47 +49,54 @@ class Router
 
     public function loadUriRequest()
     {
-
-        // if (empty($this->controller) && !isset($_SESSION)) {
+        // if (!isset($_SESSION['userName']) && (empty($this->controller) || ($this->controller === 'login'))) {
         //     $fileController = CONTROLLERS . '/' . 'loginController.php';
         //     require_once($fileController);
 
         //     $controller = new LoginController();
+        //     $controller->loadModel('loginModel');
         //     $controller->render();
         //     return;
         // }
 
+        // if (!isset($_SESSION['userName']) && $this->controller !== 'login') {
+        //     header('Location: '.BASE_URL);
+        // }
+
         if (empty($this->controller)) {
-            $fileController = CONTROLLERS . '/' . 'employeesController.php';
+            $fileController = CONTROLLERS . '/' . 'loginController.php';
             require_once($fileController);
 
-            $controller = new EmployeesController();
-            $controller->loadModel('employeesModel');
+            $controller = new LoginController();
+            $controller->loadModel('loginModel');
             $controller->render();
             return;
         }
 
-        $fileController = CONTROLLERS . '/' . $this->controller . 'Controller.php';
-        $classController =  ucfirst($this->controller) . 'Controller';
+        if (!empty($this->controller)) {
+            $fileController = CONTROLLERS . '/' . $this->controller . 'Controller.php';
+            $classController =  ucfirst($this->controller) . 'Controller';
 
-        if (file_exists($fileController)) {
-            require_once($fileController);
-            $controller = new $classController;
-            $controller->loadModel($this->controller);
-            
-            try {
-                if (!empty($this->method)) {
-                    $controller->{$this->method}($this->param);
+            if (file_exists($fileController)) {
+                require_once($fileController);
+                $controller = new $classController;
+                $controller->loadModel($this->controller);
+                
+                try {
+                    if (!empty($this->method)) {
+                        $controller->{$this->method}($this->param);
+                    }
+                } catch (Throwable $th) {
+                    $controller = new errorController(
+                        'Error loading method ' . $this->method
+                    );
                 }
-            } catch (Throwable $th) {
+            } else {
                 $controller = new errorController(
-                    'Error loading method ' . $this->method
+                    'Error loading controller ' . $this->controller
                 );
             }
-        } else {
-            $controller = new errorController(
-                'Error loading controller ' . $this->controller
-            );
         }
+
     }
 }
