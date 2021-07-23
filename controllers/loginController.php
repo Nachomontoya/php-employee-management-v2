@@ -34,16 +34,11 @@ class LoginController extends Controller{
       } else {
         echo 'Email does not exist';
       }
-      // else {
-      //   echo 'no email';
-      // }
-      // if ($result) {
-      //   echo $result['password'];
-      // }
-      // if (!$result) {
-      //   $this->view->error = "Email does not exist";
-      //   $this->render('');
-      // }
-      // echo json_encode($result);
     }
+    
+    public function signOut() {
+      $this->session->close();
+      header('location: '. BASE_URL);
+    }
+
 }
