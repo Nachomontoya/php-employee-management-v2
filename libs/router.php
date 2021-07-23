@@ -50,7 +50,7 @@ class Router
     public function loadUriRequest()
     {
 
-        if (empty($this->controller)) {
+        if (empty($this->controller) && !isset($_SESSION)) {
             $fileController = CONTROLLERS . '/' . 'loginController.php';
             require_once($fileController);
 
@@ -60,15 +60,15 @@ class Router
         }
 
 
-        // if (empty($this->controller)) {
-        //     $fileController = CONTROLLERS . '/' . 'employeesController.php';
-        //     require_once($fileController);
+        if (empty($this->controller) && isset($_SESSION)) {
+            $fileController = CONTROLLERS . '/' . 'employeesController.php';
+            require_once($fileController);
 
-        //     $controller = new EmployeesController();
-        //     $controller->loadModel('employeesModel');
-        //     $controller->render();
-        //     return;
-        // }
+            $controller = new EmployeesController();
+            $controller->loadModel('employeesModel');
+            $controller->render();
+            return;
+        }
 
         $fileController = CONTROLLERS . '/' . $this->controller . 'Controller.php';
         $classController =  ucfirst($this->controller) . 'Controller';
