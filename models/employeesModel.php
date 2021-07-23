@@ -38,7 +38,7 @@ class EmployeesModel extends Model
 
             return $items;
         } catch (PDOException $e) {
-            return [];
+            throw new Exception($e->getMessage());
         }
     }
 
@@ -64,13 +64,14 @@ class EmployeesModel extends Model
 
             return $item;
         } catch (PDOException $e) {
-            return [];
+            throw new Exception($e->getMessage());
         }
     }
 
-    public function update(int $id, $data) {
+    public function update(int $id, $data)
+    {
         try {
-        $this->db->connect()->query("UPDATE employees SET 
+            $this->db->connect()->query("UPDATE employees SET 
         name = '{$data['name']}', 
         lastName = '{$data['lastName']}', 
         email = '{$data['email']}', 
@@ -83,7 +84,7 @@ class EmployeesModel extends Model
         phone_number='{$data['phoneNumber']}' 
         WHERE id = $id ");
 
-        return true;
+            return true;
         } catch (PDOException $e) {
             throw new Exception($e->getMessage());
         }
@@ -98,7 +99,6 @@ class EmployeesModel extends Model
             ]);
             return true;
         } catch (PDOException $e) {
-            // return false;
             throw new Exception($e->getMessage());
         }
     }

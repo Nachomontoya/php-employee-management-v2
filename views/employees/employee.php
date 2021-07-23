@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
-<?php 
+<?php
 //require_once('./library/sessionHelper.php'); 
-  $employee = array();
-  // var_dump($employee);
+$employee = array();
+// var_dump($employee);
 ?>
 
 <head>
@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= BASE_URL ?>/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/main.css">
-    <title>Employee page</title>
     <script type="text/javascript" src="<?= BASE_URL ?>/node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/node_modules/jsgrid/dist/jsgrid.min.js"></script>
@@ -23,11 +22,13 @@
     <link rel="mask-icon" href="<?= BASE_URL ?>/assets/images/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+
+    <title>Employee page</title>
 </head>
 
 <body class="d-flex flex-column h-100">
     <?php
-    include "./assets/html/header.html";
+    include_once VIEWS . "/header.php";
     ?>
 
     <div class="container-fluid">
@@ -61,8 +62,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="gender" class="form-label">Gender</label>
-                            <select class="form-select" id="gender" >
-                                <option value="" >Choose...</option>
+                            <select class="form-select" id="gender">
+                                <option value="">Choose...</option>
                                 <option value="woman">Woman</option>
                                 <option value="man">Man</option>
                                 <option value="other">Other</option>
@@ -79,7 +80,7 @@
                         </div>
                         <div class="col-sm-6">
                             <label for="streetAddress" class="form-label">Street Address</label>
-                            <input type="text" class="form-control" id="streetAddress"  value=""required>
+                            <input type="text" class="form-control" id="streetAddress" value="" required>
                             <div class="invalid-feedback">
                                 Please enter the street number.
                             </div>
@@ -116,7 +117,7 @@
 
                     <div class="text-center pt-4">
                         <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
-                        <a href="<?=BASE_URL?>" class="btn btn-secondary">Return</a>
+                        <a href="<?= BASE_URL ?>" class="btn btn-secondary">Return</a>
 
                     </div>
 
@@ -156,8 +157,9 @@
     </div>
     </main>
     </div>
+
     <?php
-    include "./assets/html/footer.html";
+    include_once  VIEWS . "/footer.php";
     ?>
 
     <script>
