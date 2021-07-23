@@ -167,16 +167,6 @@ $employee = array();
         let baseUrl = '<?= BASE_URL ?>';
     </script>
     <script type="text/javascript" src="<?= BASE_URL ?>/assets/js/employee.js"></script>
-    <?php
-
-    // if (isset($this->id)) {
-    //     echo $this->id;
-    //     //echo "<script type='text/javascript'>setUserId(" . $_GET["id"] . ")</script>";
-    //     // echo "<script type='text/javascript'>populateEmployeeForm()</script>";
-    // } elseif (isset($_GET["new"]) && $_GET["new"] === "true") {
-    //     echo "<script type='text/javascript'>newEmployeeForm();</script>";
-    // }
-    ?>
 
 </body>
 
