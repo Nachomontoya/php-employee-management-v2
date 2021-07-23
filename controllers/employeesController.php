@@ -1,5 +1,6 @@
 <?php
 require_once(LIBS . '/session.php');
+
 class EmployeesController extends Controller
 {
 
@@ -9,13 +10,13 @@ class EmployeesController extends Controller
 
         $this->session = new Session();
         $this->session->init();
-        if(empty($this->session->get('email')))
-            header('Location:'. BASE_URL);
+
+        if (empty($this->session->get('email')))
+            header('Location:' . BASE_URL);
     }
 
     public function render()
     {
-        //
         $this->view->render('employees/index');
     }
 
@@ -44,20 +45,21 @@ class EmployeesController extends Controller
             $this->view->id = $id;
             echo json_encode($result);
             http_response_code(200);
-        }   catch (Throwable $th) {
+        } catch (Throwable $th) {
             http_response_code(400);
             echo json_encode(['message' => $th->getMessage()]);
         }
     }
 
-    public function updateEmployee(int $id) {
+    public function updateEmployee(int $id)
+    {
         try {
             parse_str(file_get_contents("php://input"), $_UPDATE);
             $id = $_UPDATE['id'];
             $this->model->update($id, $_UPDATE);
             http_response_code(200);
-            echo json_encode(['message' =>  "employee {$_UPDATE['id']} updated succesfully"]);
-        }  catch (Throwable $th) {
+            echo json_encode(['message' =>  "employee {$_UPDATE['id']} updated successfully"]);
+        } catch (Throwable $th) {
             http_response_code(400);
             echo json_encode(['message' =>  "Error updating {$_UPDATE['id']}:" . $th->getMessage()]);
         }

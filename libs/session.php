@@ -5,7 +5,8 @@ class Session
 
   public function init()
   {
-    session_start();
+    if ($this->getStatus() !== PHP_SESSION_ACTIVE)
+      session_start();
   }
 
   public function add($key, $value)
@@ -25,7 +26,7 @@ class Session
 
   public function remove($key)
   {
-    if(!empty($_SESSION[$key]))
+    if (!empty($_SESSION[$key]))
       unset($_SESSION[$key]);
   }
 
@@ -36,23 +37,24 @@ class Session
     $this->destroyCookies();
   }
 
-  // public function getStatus()
-  // {
-  //   return session_status();
-  // }
-
-  function destroyCookies() {
+  function destroyCookies()
+  {
     if (ini_get('session.use_cookies')) {
       $params = session_get_cookie_params();
       setcookie(
-          session_name(),
-          '',
-          time() - 42000,
-          $params["path"],
-          $params["domain"],
-          $params["secure"],
-          $params["httponly"],
+        session_name(),
+        '',
+        time() - 42000,
+        $params["path"],
+        $params["domain"],
+        $params["secure"],
+        $params["httponly"],
       );
     }
+  }
+
+  public function getStatus()
+  {
+    return session_status();
   }
 }

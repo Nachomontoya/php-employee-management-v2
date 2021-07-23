@@ -3,6 +3,7 @@
 <?php
 // require_once('./src/library/sessionHelper.php');
 ?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,7 +40,7 @@
             </form>
             <div class="text-danger">
                 <?php
-                   echo $this->error;
+                echo $this->message;
                 ?>
             </div>
         </div>

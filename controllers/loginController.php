@@ -1,44 +1,50 @@
 <?php
 
-require_once (LIBS . '/session.php');
+require_once(LIBS . '/session.php');
 
-class LoginController extends Controller{
+class LoginController extends Controller
+{
 
   public function __construct()
-    {
-        parent::__construct();
-        $this->view->error = '';
+  {
+    parent::__construct();
 
-        $this->session = new Session();
+    $this->view->message = '';
+    $this->session = new Session();
+    $this->session->init();
+
+    if (!empty($this->session->get('email')))
+      header('Location:' . BASE_URL . 'employees');
+  }
+
+  public function render()
+  {
+    $this->view->render('login/index');
+  }
+
+  public function signIn()
+  {
+    $result = $this->model->get($_POST);
+    if ($result) {
+      if (password_verify($_POST['password'], $result->password)) {
         $this->session->init();
-        if(!empty($this->session->get('email')))
-          header('Location:'. BASE_URL .'employees');
-      }
-      
-      public function render()
-      {
-        //
-        $this->view->render('login/index');
-    }
+        $this->session->add('email', $result->email);
+        $this->session->add('timeout', time());
 
-    public function signIn() {
-      $result = $this->model->get($_POST);
-      if ($result) {
-        if (password_verify($_POST['password'],$result->password)) {
-            $this->session->init();
-            $this->session->add('email', $result->email);
-            header('location: '. BASE_URL . 'employees');
-        } else {
-          echo 'password does not match';
-        }
+        header('location: ' . BASE_URL . 'employees');
       } else {
-        echo 'Email does not exist';
+        $this->view->message = "Wrong email or password";
+        $this->render();
       }
+    } else {
+      $this->view->message = "Wrong email or password";
+      $this->render();
     }
-    
-    public function signOut() {
-      $this->session->close();
-      header('location: '. BASE_URL);
-    }
+  }
 
+  public function signOut()
+  {
+    $this->session->close();
+    header('location: ' . BASE_URL);
+  }
 }
