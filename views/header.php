@@ -20,7 +20,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-secondary disabled" id="navEmployee">
+        <a href="<?= BASE_URL ?>employees/employeeForm" class="nav-link text-secondary" id="navEmployee">
           <svg class="bi d-block mx-auto mb-1" width="24" height="24">
             <use xlink:href="<?= BASE_URL ?>node_modules/bootstrap-icons/bootstrap-icons.svg#person-fill"></use>
           </svg>
