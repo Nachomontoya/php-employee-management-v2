@@ -1,82 +1,94 @@
 "use strict";
 const employeeUrl = "./library/employeeController.php";
-// let userId;
 
-// function setUserId(id) {
-//   userId = id;
-// }
-
+/**
+ * Form submit
+ *
+ */
 $(".needs-validation").on("submit", function (event) {
   event.preventDefault();
+
   if (event.target.checkValidity()) {
     let updatedEmployee = {};
     let elements = $(event.target).find("input, select");
+
     elements.each((number, element) => {
       updatedEmployee[element.id] = element.value;
     });
+
     updatedEmployee["id"] = userId;
     event.target.classList.add("was-validated");
-    console.log(`${baseUrl}employees/updateEmployee/${userId}`);
-    console.log(updatedEmployee);
+    removeClassInvalid();
+
     $.ajax({
       url: `${baseUrl}employees/updateEmployee/${userId}`,
       method: "UPDATE",
       data: updatedEmployee,
     })
       .done((response) => {
-        console.log(response);
         $("#responseMsg")
           .text("Employee Update Success")
           .attr("class", "text-success");
       })
       .fail((response) => {
-        console.log(response);
         $("#responseMsg")
           .text("Something when wrong")
           .attr("class", "text-danger");
       });
+  } else {
+    removeClassInvalid();
+    addClassInvalid();
   }
 });
 
-$(document).ready(function () {
-  console.log("ready!");
-  populateEmployeeForm();
-});
-
-function populateEmployeeForm() {
-  console.log(`${baseUrl}employees/getEmployeeById/${userId}`);
-
-  $.ajax({
-    // url: `${employeeUrl}/?id=${userId}`,
-    url: `${baseUrl}employees/getEmployeeById/${userId}`,
-    method: "GET",
-    dataType: "json",
-    // success: function (response) {
-    //   console.log(response);
-    // },
-    // error: function (xhr, status) {
-    //   console.log(xhr, status);
-    //   // let err = JSON.parse(xhr.responseText);
-    //   // renderError(err.message);
-    // },
-  })
-    .done((employee) => {
-      console.log("done");
-      console.log(employee);
-      setEmployeeForm(employee);
-    })
-    .fail((response) => {
-      console.log("fail");
-      const errorModal = new bootstrap.Modal(
-        document.getElementById("errorModal"),
-        {
-          keyboard: false,
-        }
-      );
-      errorModal.show();
-    });
+/**
+ * render validation
+ *
+ */
+function addClassInvalid() {
+  $(".needs-validation input[required]").each(function () {
+    if (!this.validity.valid) $(this).addClass("is-invalid");
+  });
 }
 
+/**
+ * render validation
+ *
+ */
+function removeClassInvalid() {
+  $(".needs-validation input").each(function () {
+    if ($(this).hasClass("is-invalid")) $(this).removeClass("is-invalid");
+  });
+}
+
+/**
+ * get employee data
+ *
+ */
+$.ajax({
+  url: `${baseUrl}employees/getEmployeeById/${userId}`,
+  method: "GET",
+  dataType: "json",
+})
+  .done((employee) => {
+    console.log("done");
+    console.log(employee);
+    setEmployeeForm(employee);
+  })
+  .fail((response) => {
+    console.log("fail");
+    const errorModal = new bootstrap.Modal(
+      document.getElementById("errorModal"),
+      {
+        keyboard: false,
+      }
+    );
+    errorModal.show();
+  });
+
+/**
+ *
+ */
 function newEmployeeForm() {
   $("#employeeTitle").text("New employee");
   $("#submitBtn").text("Add employee");
@@ -85,6 +97,9 @@ function newEmployeeForm() {
   $("#navDashboard").addClass("text-secondary").removeClass("text-white");
 }
 
+/**
+ *
+ */
 function handleNewEmployee(event) {
   event.preventDefault();
   event.stopPropagation();
@@ -118,6 +133,9 @@ function handleNewEmployee(event) {
   form.classList.add("was-validated");
 }
 
+/**
+ *
+ */
 function setEmployeeForm(employee) {
   $("#name").val(typeof employee.name !== "undefined" ? employee.name : "");
   $("#lastName").val(
