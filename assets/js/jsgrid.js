@@ -115,7 +115,7 @@ $("#jsGrid").jsGrid({
       validate: "required",
     },
     {
-      name: "address",
+      name: "streetAddress",
       title: "Street No.",
       type: "number",
       width: 2,
