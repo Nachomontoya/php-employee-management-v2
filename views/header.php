@@ -41,6 +41,9 @@
       </a>
       <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser">
         <li>
+          <a class="dropdown-item text-danger" href="">Manage users</a>
+        </li>
+        <li>
           <a class="dropdown-item text-danger" onclick="logout()">Sign out</a>
         </li>
       </ul>
