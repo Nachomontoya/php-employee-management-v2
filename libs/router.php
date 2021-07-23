@@ -32,7 +32,7 @@ class Router
 
     function setMethod()
     {
-        $this->method = isset($this->uri[3]) ? $this->uri[3] : 'render';
+        $this->method = isset($this->uri[3]) ? $this->uri[3] : '';
     }
 
     function setParam()

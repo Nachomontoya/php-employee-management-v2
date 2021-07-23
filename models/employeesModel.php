@@ -47,9 +47,45 @@ class EmployeesModel extends Model
         try {
             $query = $this->db->connect()->query("SELECT * FROM employees WHERE id=$id");
 
-            return $query->fetchAll(PDO::FETCH_ASSOC);
+            $row = $query->fetch(PDO::FETCH_ASSOC);
+            $item = new Employee(
+                $row['id'],
+                $row['name'],
+                $row['lastname'],
+                $row['email'],
+                $row['gender'],
+                $row['age'],
+                $row['address'],
+                $row['city'],
+                $row['state'],
+                $row['postal_code'],
+                $row['phone_number']
+            );
+
+            return $item;
         } catch (PDOException $e) {
             return [];
+        }
+    }
+
+    public function update(int $id, $data) {
+        try {
+        $this->db->connect()->query("UPDATE employees SET 
+        name = '{$data['name']}', 
+        lastName = '{$data['lastName']}', 
+        email = '{$data['email']}', 
+        gender = '{$data['gender']}', 
+        age = '{$data['age']}', 
+        address = '{$data['streetAddress']}', 
+        city='{$data['city']}', 
+        state='{$data['state']}', 
+        postal_code='{$data['postalCode']}', 
+        phone_number='{$data['phoneNumber']}' 
+        WHERE id = $id ");
+
+        return true;
+        } catch (PDOException $e) {
+            throw new Exception($e->getMessage());
         }
     }
 

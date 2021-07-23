@@ -26,9 +26,36 @@ class EmployeesController extends Controller
         }
     }
 
-    public function getEmployeeById(int $id)
+    public function renderEmployee($id)
     {
-        $this->model->getById($id);
+        $this->view->id = $id;
+        $this->view->render('employees/employee');
+    }
+
+    public function getEmployeeById($id)
+    {
+        try {
+            $result = $this->model->getById($id);
+            $this->view->id = $id;
+            echo json_encode($result);
+            http_response_code(200);
+        }   catch (Throwable $th) {
+            http_response_code(400);
+            echo json_encode(['message' => $th->getMessage()]);
+        }
+    }
+
+    public function updateEmployee(int $id) {
+        try {
+            parse_str(file_get_contents("php://input"), $_UPDATE);
+            $id = $_UPDATE['id'];
+            $this->model->update($id, $_UPDATE);
+            http_response_code(200);
+            echo json_encode(['message' =>  "employee {$_UPDATE['id']} updated succesfully"]);
+        }  catch (Throwable $th) {
+            http_response_code(400);
+            echo json_encode(['message' =>  "Error updating {$_UPDATE['id']}:" . $th->getMessage()]);
+        }
     }
 
     public function deleteEmployee($id)
@@ -36,7 +63,6 @@ class EmployeesController extends Controller
         try {
             parse_str(file_get_contents("php://input"), $_DELETE);
             $id = $_DELETE['id'];
-
             $this->model->delete($id);
             http_response_code(200);
             echo json_encode(['message' =>  "employee {$_DELETE['name']} deleted"]);

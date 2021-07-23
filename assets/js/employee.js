@@ -1,10 +1,10 @@
 "use strict";
 const employeeUrl = "./library/employeeController.php";
-let userId;
+// let userId;
 
-function setUserId(id) {
-  userId = id;
-}
+// function setUserId(id) {
+//   userId = id;
+// }
 
 $(".needs-validation").on("submit", function (event) {
   event.preventDefault();
@@ -16,18 +16,21 @@ $(".needs-validation").on("submit", function (event) {
     });
     updatedEmployee["id"] = userId;
     event.target.classList.add("was-validated");
-
+    console.log(`${baseUrl}employees/updateEmployee/${userId}`);
+    console.log(updatedEmployee);
     $.ajax({
-      url: employeeUrl,
+      url: `${baseUrl}employees/updateEmployee/${userId}`,
       method: "UPDATE",
-      data: { updatedEmployee: updatedEmployee },
+      data: updatedEmployee,
     })
-      .done((_) => {
+      .done((response) => {
+        console.log(response);
         $("#responseMsg")
           .text("Employee Update Success")
           .attr("class", "text-success");
       })
-      .fail((_) => {
+      .fail((response) => {
+        console.log(response);
         $("#responseMsg")
           .text("Something when wrong")
           .attr("class", "text-danger");
@@ -35,42 +38,35 @@ $(".needs-validation").on("submit", function (event) {
   }
 });
 
+$(document).ready(function () {
+  console.log("ready!");
+  populateEmployeeForm();
+});
+
 function populateEmployeeForm() {
+  console.log(`${baseUrl}employees/getEmployeeById/${userId}`);
+
   $.ajax({
-    url: `${employeeUrl}/?id=${userId}`,
+    // url: `${employeeUrl}/?id=${userId}`,
+    url: `${baseUrl}employees/getEmployeeById/${userId}`,
     method: "GET",
+    dataType: "json",
+    // success: function (response) {
+    //   console.log(response);
+    // },
+    // error: function (xhr, status) {
+    //   console.log(xhr, status);
+    //   // let err = JSON.parse(xhr.responseText);
+    //   // renderError(err.message);
+    // },
   })
     .done((employee) => {
-      $("#name").val(typeof employee.name !== "undefined" ? employee.name : "");
-      $("#lastName").val(
-        typeof employee.lastName !== "undefined" ? employee.lastName : ""
-      );
-      $("#email").val(
-        typeof employee.email !== "undefined" ? employee.email : ""
-      );
-      $("#gender").val(
-        typeof employee.gender !== "undefined" ? employee.gender : ""
-      );
-      $("#city").val(typeof employee.city !== "undefined" ? employee.city : "");
-      $("#streetAddress").val(
-        typeof employee.streetAddress !== "undefined"
-          ? employee.streetAddress
-          : ""
-      );
-      $("#state").val(
-        typeof employee.state !== "undefined" ? employee.state : ""
-      );
-      $("#age").val(typeof employee.age !== "undefined" ? employee.age : "");
-      $("#postalCode").val(
-        typeof employee.postalCode !== "undefined" ? employee.postalCode : ""
-      );
-      $("#phoneNumber").val(
-        typeof employee.phoneNumber !== "undefined" ? employee.phoneNumber : ""
-      );
-      $("#navEmployee").removeClass("text-secondary").addClass("text-white");
-      $("#navDashboard").addClass("text-secondary").removeClass("text-white");
+      console.log("done");
+      console.log(employee);
+      setEmployeeForm(employee);
     })
     .fail((response) => {
+      console.log("fail");
       const errorModal = new bootstrap.Modal(
         document.getElementById("errorModal"),
         {
@@ -120,4 +116,29 @@ function handleNewEmployee(event) {
   }
 
   form.classList.add("was-validated");
+}
+
+function setEmployeeForm(employee) {
+  $("#name").val(typeof employee.name !== "undefined" ? employee.name : "");
+  $("#lastName").val(
+    typeof employee.lastName !== "undefined" ? employee.lastName : ""
+  );
+  $("#email").val(typeof employee.email !== "undefined" ? employee.email : "");
+  $("#gender").val(
+    typeof employee.gender !== "undefined" ? employee.gender : ""
+  );
+  $("#city").val(typeof employee.city !== "undefined" ? employee.city : "");
+  $("#streetAddress").val(
+    typeof employee.streetAddress !== "undefined" ? employee.streetAddress : ""
+  );
+  $("#state").val(typeof employee.state !== "undefined" ? employee.state : "");
+  $("#age").val(typeof employee.age !== "undefined" ? employee.age : "");
+  $("#postalCode").val(
+    typeof employee.postalCode !== "undefined" ? employee.postalCode : ""
+  );
+  $("#phoneNumber").val(
+    typeof employee.phoneNumber !== "undefined" ? employee.phoneNumber : ""
+  );
+  $("#navEmployee").removeClass("text-secondary").addClass("text-white");
+  $("#navDashboard").addClass("text-secondary").removeClass("text-white");
 }
