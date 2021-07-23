@@ -27,7 +27,7 @@
 
 <body class="d-flex flex-column h-100">
     <?php
-    include_once "./assets/html/header.html";
+    include_once VIEWS . "/header.php";
     ?>
 
     <div class="container mt-3">
@@ -41,7 +41,7 @@
 
 
     <?php
-    include_once "./assets/html/footer.html";
+    include_once  VIEWS . "/footer.php";
     ?>
 </body>
 

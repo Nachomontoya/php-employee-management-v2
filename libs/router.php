@@ -32,7 +32,7 @@ class Router
 
     function setMethod()
     {
-        $this->method = isset($this->uri[3]) ? $this->uri[3] : '';
+        $this->method = isset($this->uri[3]) ? $this->uri[3] : 'render';
     }
 
     function setParam()
@@ -50,17 +50,16 @@ class Router
     public function loadUriRequest()
     {
 
-        if (empty($this->controller) && !isset($_SESSION)) {
-            $fileController = CONTROLLERS . '/' . 'loginController.php';
-            require_once($fileController);
+        // if (empty($this->controller) && !isset($_SESSION)) {
+        //     $fileController = CONTROLLERS . '/' . 'loginController.php';
+        //     require_once($fileController);
 
-            $controller = new LoginController();
-            $controller->render();
-            return;
-        }
+        //     $controller = new LoginController();
+        //     $controller->render();
+        //     return;
+        // }
 
-
-        if (empty($this->controller) && isset($_SESSION)) {
+        if (empty($this->controller)) {
             $fileController = CONTROLLERS . '/' . 'employeesController.php';
             require_once($fileController);
 

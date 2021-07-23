@@ -34,7 +34,7 @@ function insertItemHandler(item) {
 function deleteItemHandler(item) {
   return $.ajax({
     type: "DELETE",
-    url: "./employees/deleteEmployee/" + item.id,
+    url: `${baseUrl}employees/deleteEmployee/ + ${item.id}`,
     data: item,
     dataType: "json",
     // success: function (response) {
@@ -57,16 +57,18 @@ $("#jsGrid").jsGrid({
   sorting: true,
   paging: true,
   autoload: true,
-  // filtering: true,
+
   rowDoubleClick: function (item) {
-    window.location.replace("./employees/renderEmployee/" + item.item.id);
+    window.location.replace(
+      `${baseUrl}employees/renderEmployee/${item.item.id}`
+    );
   },
 
   controller: {
     loadData: function (response) {
       return $.ajax({
         type: "GET",
-        url: "./employees/getAllEmployees",
+        url: `${baseUrl}employees/getAllEmployees`,
         dataType: "json",
         // data: response,
         // success: function (response) {
