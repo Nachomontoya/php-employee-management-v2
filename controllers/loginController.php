@@ -10,9 +10,9 @@ class LoginController extends Controller{
         $this->view->error = '';
 
         $this->session = new Session();
-        // $this->session->init();
-      //   if(!empty($this->session->get('email')))
-      //     header('Location:'. BASE_URL .'employees');
+        $this->session->init();
+        if(!empty($this->session->get('email')))
+          header('Location:'. BASE_URL .'employees');
       }
       
       public function render()
