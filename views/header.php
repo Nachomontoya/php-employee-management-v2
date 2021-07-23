@@ -41,20 +41,10 @@
       </a>
       <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser">
         <li>
-          <a class="dropdown-item text-danger" onclick="logout()">Sign out</a>
+          <a class="dropdown-item text-danger" href="<?=BASE_URL . 'login/signOut'?>">Sign out</a>
         </li>
       </ul>
     </div>
   </div>
-  <script>
-    function logout() {
-      $.ajax({
-        url: "./library/loginController.php",
-        method: "LOGOUT",
-      }).done(function(res) {
-        console.log(res);
-        window.location.href = "./index.php";
-      });
-    }
   </script>
 </header>

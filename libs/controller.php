@@ -17,7 +17,6 @@ abstract class Controller
 
         if (file_exists($url)) {
             require $url;
-
             $modelName = ucfirst($model) . 'Model';
             $this->model = new $modelName();
         }
