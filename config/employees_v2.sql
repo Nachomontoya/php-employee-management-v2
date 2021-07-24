@@ -32,7 +32,7 @@ CREATE TABLE `employees` (
   `name` varchar(25) NOT NULL,
   `lastname` varchar(25) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `gender` enum('woman','man') NOT NULL,
+  `gender` enum('woman','man','other','no answer') NOT NULL,
   `age` int(3) NOT NULL,
   `address` varchar(100) NOT NULL,
   `city` varchar(25) NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(25) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
-(1, 'admin', 'admin@assemblerschool.com', '$2y$10$nuh1LEwFt7Q2/wz9/CmTJO91stTBS4cRjiJYBY3sVCA');
+(1, 'admin', 'admin@assemblerschool.com', '$2y$10$nuh1LEwFt7Q2/wz9/CmTJO91stTBS4cRjiJYBY3sVCARnllI.wzBC');
 
 --
 -- Índices para tablas volcadas

@@ -94,21 +94,21 @@ $employee = array();
                         </div>
                         <div class="col-sm-6">
                             <label for="age" class="form-label">Age</label>
-                            <input type="text" class="form-control" id="age" value="" name="age" required>
+                            <input type="number" class="form-control" id="age" value="" name="age" required>
                             <div class="invalid-feedback">
                                 Please enter the employee's age.
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="postalCode" class="form-label">Postal Code</label>
-                            <input type="text" class="form-control" id="postalCode" value="" name="postalCode" required>
+                            <input type="number" class="form-control" id="postalCode" value="" name="postalCode" required>
                             <div class="invalid-feedback">
                                 Please enter the employee's postal code.
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="phoneNumber" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="phoneNumber" value="" name="phoneNumber" required>
+                            <input type="number" class="form-control" id="phoneNumber" value="" name="phoneNumber" required>
                             <div class="invalid-feedback">
                                 Please enter the phone number.
                             </div>
@@ -125,21 +125,7 @@ $employee = array();
                 <div id="responseMsg"></div>
             </div>
     </div>
-    <!-- <div class="modal fade" id="errorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-dialog-centered">
-            <div class="modal-content bg-danger">
-                <div class="modal-header border-0">
-                    <h3 class="modal-title text-light mx-auto" id="errorModalLabel">Error!</h3>
-                </div>
-                <div class="modal-body text-center text-light h5">
-                    This id is not related to any user
-                </div>
-                <div class="modal-footer border-0">
-                    <a href="<?= BASE_URL ?>" class="btn btn-light mx-auto">Go back to dashboard</a>
-                </div>
-            </div>
-        </div>
-    </div> -->
+    
     <div class="modal fade" id="successfulAddModal" tabindex="-1" aria-labelledby="successfulAddModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">

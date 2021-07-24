@@ -104,18 +104,20 @@ class EmployeesModel extends Model
     }
 
     public function insert(array $data) {
+        $age = (int)$data['age'];
+        $postalCode = (int)$data['postalCode'];
         try {
         $this->db->connect()->query("INSERT INTO employees (name, lastName, email, gender, age, address, city, state, postal_code, phone_number) 
         VALUES 
         ('{$data['name']}', 
         '{$data['lastName']}', 
         '{$data['email']}', 
-        'man', 
-        '{$data['age']}', 
+        '{$_POST['gender']}', 
+        '$age', 
         '{$data['streetAddress']}', 
         '{$data['city']}', 
         '{$data['state']}', 
-        '{$data['postalCode']}', 
+        '$postalCode', 
         '{$data['phoneNumber']}' )");
 
         return true;

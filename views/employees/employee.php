@@ -116,7 +116,7 @@ $employee = array();
                     </div>
 
                     <div class="text-center pt-4">
-                        <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Update Employee</button>
                         <a href="<?= BASE_URL ?>" class="btn btn-secondary">Return</a>
 
                     </div>

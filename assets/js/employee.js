@@ -157,6 +157,6 @@ function setEmployeeForm(employee) {
   $("#phoneNumber").val(
     typeof employee.phoneNumber !== "undefined" ? employee.phoneNumber : ""
   );
-  $("#navEmployee").removeClass("text-secondary").addClass("text-white");
-  $("#navDashboard").addClass("text-secondary").removeClass("text-white");
+  // $("#navEmployee").removeClass("text-secondary").addClass("text-white");
+  // $("#navDashboard").addClass("text-secondary").removeClass("text-white");
 }

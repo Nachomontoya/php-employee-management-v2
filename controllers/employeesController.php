@@ -84,10 +84,11 @@ class EmployeesController extends Controller
     }
 
     public function insertEmployeeByPost() {
-        //TODO check the gender
+        //TODO needs to validate forms fields;
         try {
             $this->model->insert($_POST);
             http_response_code(200);
+            header('Location:'. BASE_URL);
             echo json_encode(['message' =>  "employee {$_POST['name']} created"]);
         }   catch (Throwable $th) {
             http_response_code(400);
