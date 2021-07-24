@@ -1,6 +1,7 @@
 <?php
 
 require_once(CONTROLLERS . '/errorController.php');
+require_once(LIBS . '/timeout.php');
 
 class Router
 {
@@ -49,26 +50,29 @@ class Router
 
     public function loadUriRequest()
     {
-
-        // if (empty($this->controller)) {
-        //     $fileController = CONTROLLERS . '/' . 'employeesController.php';
-        //     require_once($fileController);
-
-        //     $controller = new EmployeesController();
-        //     $controller->loadModel('employeesModel');
-        //     $controller->render();
-        //     return;
-        // }
-
+        // There is no controller
         if (empty($this->controller)) {
-            //TODO : login controller
-            // $fileController = CONTROLLERS . '/' . 'loginController.php';
-            // require_once($fileController);
+            $fileController = CONTROLLERS . '/' . 'loginController.php';
+            require_once($fileController);
 
-            // $controller = new LoginController();
-            // $controller->loadModel('employeesModel');
-            // $controller->render();
+            $controller = new LoginController();
+            $controller->loadModel('loginModel');
+            $controller->render();
             return;
+        }
+
+        // check user timeout
+        if ($this->controller !== "login") {
+            $fileController = CONTROLLERS . '/' . 'loginController.php';
+            require_once($fileController);
+
+            $this->timeOut = new Timeout();
+
+            if ($this->timeOut->checkUserTime()) {
+                $this->login = new LoginController();
+                $this->login->signOut();
+                return;
+            }
         }
 
         $fileController = CONTROLLERS . '/' . $this->controller . 'Controller.php';

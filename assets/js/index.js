@@ -10,7 +10,7 @@ function login(e) {
     data: formData,
     success: function () {
       $(".text-danger").text("");
-      window.location.href = "./src/dashboard.php";
+      window.location.href = "./index.php";
     },
     error: function () {
       $(".text-danger").text("Wrong email or password");

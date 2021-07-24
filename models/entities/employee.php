@@ -10,7 +10,7 @@ class Employee
         string $email,
         string $gender,
         int $age,
-        string $address,
+        string $streetAddress,
         string $city,
         string $state,
         int $postalCode,
@@ -22,7 +22,7 @@ class Employee
         $this->email = $email;
         $this->gender = $gender;
         $this->age = $age;
-        $this->address = $address;
+        $this->streetAddress = $streetAddress;
         $this->city = $city;
         $this->state = $state;
         $this->postalCode = $postalCode;

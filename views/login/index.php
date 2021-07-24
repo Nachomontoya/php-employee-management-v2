@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+// require_once('./src/library/sessionHelper.php');
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -24,7 +27,7 @@
     <div class="d-flex login-container align-items-center justify-content-center">
         <div class="login-form p-5 rounded">
             <h3>Login</h3>
-            <form id="formLogin" action="login/login" method="post">
+            <form id="formLogin" action="<?= BASE_URL ?>login/signIn" method="post">
                 <div class="mb-3">
                     <input type="email" class="form-control" placeholder="Your Email *" value="" name="email" required />
                 </div>
@@ -35,9 +38,14 @@
                     <input type="submit" class="btn btnSubmit" value="Login" />
                 </div>
             </form>
-            <div class="text-danger"></div>
+            <div class="text-danger">
+                <?php
+                echo $this->message;
+                ?>
+            </div>
         </div>
     </div>
 </body>
+<!-- <script src="./assets/js/index.js"></script> -->
 
 </html>
