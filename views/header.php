@@ -41,6 +41,9 @@
       </a>
       <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser">
         <li>
+          <a class="dropdown-item text-danger" href="<?= BASE_URL . 'users' ?>">Manage users</a>
+        </li>
+        <li>
           <a class="dropdown-item text-danger" href="<?= BASE_URL . 'login/signOut' ?>">Sign out</a>
         </li>
       </ul>

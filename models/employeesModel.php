@@ -1,7 +1,6 @@
 <?php
 
 require_once(MODELS . '/entities/employee.php');
-require_once(CONTROLLERS . '/errorController.php');
 
 class EmployeesModel extends Model
 {
