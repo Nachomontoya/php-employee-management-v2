@@ -16,6 +16,9 @@ class UsersController extends Controller
 
     public function render()
     {
+        if ($this->isAdmin())
+            $this->view->isAdmin = true;
+
         $this->view->render('users/index');
     }
 

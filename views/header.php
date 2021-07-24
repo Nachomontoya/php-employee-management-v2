@@ -40,9 +40,11 @@
         <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" />
       </a>
       <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser">
-        <li>
-          <a class="dropdown-item text-danger" href="<?= BASE_URL . 'users' ?>">Manage users</a>
-        </li>
+        <?php if (isset($this->isAdmin) && $this->isAdmin) : ?>
+          <li>
+            <a class="dropdown-item text-danger" href="<?= BASE_URL . 'users' ?>">Manage users</a>
+          </li>
+        <?php endif; ?>
         <li>
           <a class="dropdown-item text-danger" href="<?= BASE_URL . 'login/signOut' ?>">Sign out</a>
         </li>

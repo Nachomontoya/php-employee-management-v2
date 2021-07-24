@@ -17,6 +17,9 @@ class EmployeesController extends Controller
 
     public function render()
     {
+        if ($this->isAdmin())
+            $this->view->isAdmin = true;
+
         $this->view->render('employees/index');
     }
 
