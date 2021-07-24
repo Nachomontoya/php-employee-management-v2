@@ -25,4 +25,17 @@ class UsersController extends Controller
         $users = $this->model->getAll();
         echo json_encode($users);
     }
+
+    public function addUser()
+    {
+        try {
+            if ($this->model->insert($_POST)) {
+                http_response_code(200);
+                echo json_encode(['message' => 'User inserted']);
+            };
+        } catch (Throwable $th) {
+            http_response_code(400);
+            echo json_encode(['message' => $th->getMessage()]);
+        }
+    }
 }

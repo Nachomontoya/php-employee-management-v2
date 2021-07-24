@@ -93,18 +93,26 @@ $("#jsGrid").jsGrid({
         url: `${baseUrl}users/getAllUsers`,
         dataType: "json",
         data: response,
-        success: function (response) {
-          console.log(response);
-        },
         error: function (xhr, status) {
-          console.log(xhr, status);
-          //   let err = JSON.parse(xhr.responseText);
-          //   renderError(err.message);
+          let err = JSON.parse(xhr.responseText);
+          renderError(err.message);
         },
       });
     },
     insertItem: function (item) {
-      insertItemHandler(item);
+      return $.ajax({
+        type: "POST",
+        url: `${baseUrl}users/addUser`,
+        dataType: "json",
+        data: item,
+        success: function () {
+          $("#jsGrid").jsGrid("loadData");
+        },
+        error: function (xhr, status) {
+          let err = JSON.parse(xhr.responseText);
+          renderError(err.message);
+        },
+      });
     },
     // deleteItem: function (item) {
     //   deleteItemHandler(item);
@@ -138,13 +146,15 @@ $("#jsGrid").jsGrid({
   ],
 });
 
-function insertItemHandler(item) {
-  console.log(item);
-  return $.ajax({
-    type: "POST",
-    url: `${baseUrl}users/addUser`,
-    data: item,
-  }).done(() => {
-    $("#jsGrid").jsGrid("loadData");
-  });
+function renderError(message = "Error", element = "header") {
+  $(element).after(
+    `<div class="container mt-3">
+      <div class="alert alert-danger" role="alert">
+          <h4 class="alert-heading">Error!</h4>
+          <hr>
+          <p>${message}</p>
+          <!-- <p class="mb-0">Made by Brahim Benalia & Nacho Montoya</p> -->
+      </div>
+      </div>`
+  );
 }

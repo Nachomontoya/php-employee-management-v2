@@ -22,15 +22,17 @@ class UsersModel extends Model
     public function insert($user)
     {
         try {
+            $userPass = password_hash($user['password'], PASSWORD_DEFAULT);
             $query = $this->db->connect()->query("INSERT INTO users 
             ( name, email, password ) 
-            VALUES ( {$user['name']}, {$user['email']}, {$user['password']} )");
+            VALUES ( '{$user['name']}', '{$user['email']}', '{$userPass}' )");
 
             return True;
         } catch (PDOException $e) {
             throw new Exception($e->getMessage());
         }
     }
+
     // public function getById(int $id)
     // {
     //     try {
