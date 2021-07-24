@@ -32,7 +32,7 @@ CREATE TABLE `employees` (
   `name` varchar(25) NOT NULL,
   `lastname` varchar(25) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `gender` enum('woman','man','other','no answer') NOT NULL,
+  `gender` enum('woman','man','other','no answer', '') NOT NULL,
   `age` int(3) NOT NULL,
   `address` varchar(100) NOT NULL,
   `city` varchar(25) NOT NULL,

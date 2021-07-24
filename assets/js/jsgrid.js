@@ -21,13 +21,18 @@ const employeeUrl = "./employees/getAllEmployees";
 //   .always(function () {});
 
 function insertItemHandler(item) {
-  console.log(item);
   return $.ajax({
     type: "POST",
-    url: employeeUrl,
+    url: `${baseUrl}employees/insertEmployeeByAjax`,
     data: item,
-  }).done(() => {
-    $("#jsGrid").jsGrid("loadData");
+    success: function () {
+      window.location.replace(`${baseUrl}`);
+    },
+    error: function (xhr, status) {
+      console.log(xhr, status);
+      let err = JSON.parse(xhr.responseText);
+      renderError(err.message);
+    },
   });
 }
 

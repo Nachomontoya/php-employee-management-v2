@@ -97,8 +97,14 @@ class EmployeesController extends Controller
     }
 
     public function insertEmployeeByAjax() {
-        //TODO get the data via AJAX request;
-        //TODO send the query on $this->model->insert($data);
-        //TODO redirect to dashboard?;
+        try {
+            parse_str(file_get_contents("php://input"), $_POST);
+            $this->model->insert($_POST);
+            http_response_code(200);
+            echo json_encode(['message' =>  "employee {$_POST['name']} created"]);
+        }   catch (Throwable $th) {
+            http_response_code(400);
+            echo json_encode(['message' =>  "Error creating {$_POST['name']}:" . $th->getMessage()]);
+        }
     }
 }

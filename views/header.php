@@ -49,7 +49,6 @@
   <script>
     let url = window.location.href;
     let parts = url.split('/');
-    console.log(parts);
     if (parts[5] === "employeeForm" || parts[5] === "renderEmployee") {
       $('#navEmployee').toggleClass('text-white').removeClass('text-secondary');
       $('#navDashboard').toggleClass('text-secondary').removeClass('text-white');

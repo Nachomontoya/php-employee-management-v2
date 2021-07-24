@@ -105,14 +105,16 @@ class EmployeesModel extends Model
 
     public function insert(array $data) {
         $age = (int)$data['age'];
-        $postalCode = (int)$data['postalCode'];
+        $postalCode = (int)$data['age'];
+        $gender = isset($data['gender']) ? $data['gender'] : '';
+        $lastName = isset($data['lastName']) ? $data['lastName'] : '';
         try {
         $this->db->connect()->query("INSERT INTO employees (name, lastName, email, gender, age, address, city, state, postal_code, phone_number) 
         VALUES 
         ('{$data['name']}', 
-        '{$data['lastName']}', 
+        '$lastName', 
         '{$data['email']}', 
-        '{$_POST['gender']}', 
+        '$gender', 
         '$age', 
         '{$data['streetAddress']}', 
         '{$data['city']}', 
