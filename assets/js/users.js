@@ -51,41 +51,6 @@ $("#jsGrid").jsGrid({
   paging: true,
   autoload: true,
 
-  //   rowDoubleClick: function (item) {
-  //     window.location.replace(
-  //       `${baseUrl}employees/renderEmployee/${item.item.id}`
-  //     );
-  //   },
-
-  //   onItemInserting: function () {
-  //     console.log("insert");
-  //   },
-
-  //   insertRowRenderer: function (item, aa) {
-  //     var classStr = "";
-
-  //     if (aa % 2 == 0) {
-  //       classStr = "custom";
-  //     }
-
-  //     var test =
-  //       '<tr class="jsgrid-row ' +
-  //       classStr +
-  //       ' style="background:red">' +
-  //       '<td class="jsgrid-cell" style="width: 150px;">' +
-  //       item +
-  //       "</td>" +
-  //       '<td class="jsgrid-cell" style="width: 100px;">' +
-  //       item +
-  //       "</td>" +
-  //       '<td class="jsgrid-cell" style="width: 100px;">' +
-  //       item +
-  //       "</td>" +
-  //       "</tr>";
-
-  //     return $(test);
-  //   },
-
   controller: {
     loadData: function (response) {
       return $.ajax({
@@ -142,7 +107,18 @@ $("#jsGrid").jsGrid({
       width: 10,
       validate: "required",
     },
-    { type: "control", width: 1, editButton: false },
+    {
+      type: "control",
+      width: 1,
+      itemTemplate: function (value, item) {
+        let $result = $([]);
+
+        if (item.deletable) {
+          $result = $result.add(this._createDeleteButton(item));
+        }
+        return $result;
+      },
+    },
   ],
 });
 

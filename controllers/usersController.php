@@ -26,6 +26,13 @@ class UsersController extends Controller
     {
         // HTTP_X_REQUESTED_WITH: "XMLHttpRequest"
         $users = $this->model->getAll();
+        foreach ($users as $key => $user) {
+            if ($user['name'] == 'admin') {
+                $users[$key]['deletable'] = false;
+                continue;
+            }
+            $users[$key]['deletable'] = true;
+        }
         echo json_encode($users);
     }
 
