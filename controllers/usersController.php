@@ -24,16 +24,23 @@ class UsersController extends Controller
 
     public function getAllUsers()
     {
-        // HTTP_X_REQUESTED_WITH: "XMLHttpRequest"
-        $users = $this->model->getAll();
-        foreach ($users as $key => $user) {
-            if ($user['name'] == 'admin') {
-                $users[$key]['deletable'] = false;
-                continue;
+        try {
+            // HTTP_X_REQUESTED_WITH: "XMLHttpRequest"
+            $users = $this->model->getAll();
+            foreach ($users->all() as $user) {
+                if ($user->name == 'admin') {
+                    $user->deletable = false;
+                    continue;
+                }
+                $user->deletable = true;
             }
-            $users[$key]['deletable'] = true;
+
+            echo json_encode($users->all());
+            http_response_code(200);
+        } catch (Throwable $th) {
+            http_response_code(400);
+            echo json_encode(['message' => $th->getMessage()]);
         }
-        echo json_encode($users);
     }
 
     public function addUser()
