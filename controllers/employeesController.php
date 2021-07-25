@@ -26,9 +26,9 @@ class EmployeesController extends Controller
     public function getAllEmployees()
     {
         try {
-            $data = $this->model->getAll();
+            $employeeList = $this->model->getAll();
+            echo json_encode($employeeList->all());
             http_response_code(200);
-            echo json_encode($data);
         } catch (Throwable $th) {
             http_response_code(400);
             echo json_encode(['message' => $th->getMessage()]);
@@ -60,11 +60,11 @@ class EmployeesController extends Controller
             parse_str(file_get_contents("php://input"), $_UPDATE);
             $id = $_UPDATE['id'];
             $this->model->update($id, $_UPDATE);
-            http_response_code(200);
             echo json_encode(['message' =>  "employee {$_UPDATE['id']} updated successfully"]);
+            http_response_code(200);
         } catch (Throwable $th) {
-            http_response_code(400);
             echo json_encode(['message' =>  "Error updating {$_UPDATE['id']}:" . $th->getMessage()]);
+            http_response_code(400);
         }
     }
 
@@ -74,38 +74,41 @@ class EmployeesController extends Controller
             parse_str(file_get_contents("php://input"), $_DELETE);
             $id = $_DELETE['id'];
             $this->model->delete($id);
-            http_response_code(200);
             echo json_encode(['message' =>  "employee {$_DELETE['name']} deleted"]);
+            http_response_code(200);
         } catch (Throwable $th) {
-            http_response_code(400);
             echo json_encode(['message' =>  "Error deleting {$_DELETE['name']}:" . $th->getMessage()]);
+            http_response_code(400);
         }
     }
 
-    public function employeeForm() {
+    public function employeeForm()
+    {
         $this->view->render('employees/newEmployee');
     }
 
-    public function insertEmployeeByPost() {
+    public function insertEmployeeByPost()
+    {
         //TODO needs to validate forms fields;
         try {
             $this->model->insert($_POST);
             http_response_code(200);
-            header('Location:'. BASE_URL);
+            header('Location:' . BASE_URL);
             echo json_encode(['message' =>  "employee {$_POST['name']} created"]);
-        }   catch (Throwable $th) {
+        } catch (Throwable $th) {
             http_response_code(400);
             echo json_encode(['message' =>  "Error creating {$_POST['name']}:" . $th->getMessage()]);
         }
     }
 
-    public function insertEmployeeByAjax() {
+    public function insertEmployeeByAjax()
+    {
         try {
             parse_str(file_get_contents("php://input"), $_POST);
             $this->model->insert($_POST);
             http_response_code(200);
             echo json_encode(['message' =>  "employee {$_POST['name']} created"]);
-        }   catch (Throwable $th) {
+        } catch (Throwable $th) {
             http_response_code(400);
             echo json_encode(['message' =>  "Error creating {$_POST['name']}:" . $th->getMessage()]);
         }
