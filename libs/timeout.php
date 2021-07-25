@@ -19,7 +19,7 @@ class Timeout
         }
 
         $timeOut = $this->session->get('timeout');
-        if ((time() - $timeOut) > 3600) {
+        if ((time() - $timeOut) < 0) {
             return true;
         }
     }

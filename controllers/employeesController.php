@@ -81,4 +81,33 @@ class EmployeesController extends Controller
             echo json_encode(['message' =>  "Error deleting {$_DELETE['name']}:" . $th->getMessage()]);
         }
     }
+
+    public function employeeForm() {
+        $this->view->render('employees/newEmployee');
+    }
+
+    public function insertEmployeeByPost() {
+        //TODO needs to validate forms fields;
+        try {
+            $this->model->insert($_POST);
+            http_response_code(200);
+            header('Location:'. BASE_URL);
+            echo json_encode(['message' =>  "employee {$_POST['name']} created"]);
+        }   catch (Throwable $th) {
+            http_response_code(400);
+            echo json_encode(['message' =>  "Error creating {$_POST['name']}:" . $th->getMessage()]);
+        }
+    }
+
+    public function insertEmployeeByAjax() {
+        try {
+            parse_str(file_get_contents("php://input"), $_POST);
+            $this->model->insert($_POST);
+            http_response_code(200);
+            echo json_encode(['message' =>  "employee {$_POST['name']} created"]);
+        }   catch (Throwable $th) {
+            http_response_code(400);
+            echo json_encode(['message' =>  "Error creating {$_POST['name']}:" . $th->getMessage()]);
+        }
+    }
 }
