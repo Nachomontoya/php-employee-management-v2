@@ -15,6 +15,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL ?>assets/images/favicon-16x16.png">
     <link rel="manifest" href="<?= BASE_URL ?>assets/images/site.webmanifest">
     <link rel="mask-icon" href="<?= BASE_URL ?>assets/images/safari-pinned-tab.svg" color="#5bbad5">
+    <script type="text/javascript" src="<?= BASE_URL ?>node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>node_modules/jsgrid/dist/jsgrid.min.js"></script>
 
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
@@ -42,9 +45,6 @@
     ?>
 </body>
 
-<script type="text/javascript" src="<?= BASE_URL ?>node_modules/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="<?= BASE_URL ?>node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="<?= BASE_URL ?>node_modules/jsgrid/dist/jsgrid.min.js"></script>
 <script>
     let baseUrl = '<?= BASE_URL ?>';
 </script>

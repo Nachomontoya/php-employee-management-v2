@@ -12,7 +12,7 @@
 
     <ul class="nav col-lg-auto mb-2 justify-content-center mb-md-0">
       <li>
-        <a href="<?= BASE_URL ?>" class="nav-link text-white" id="navDashboard">
+        <a href="<?= BASE_URL ?>" class="nav-link text-secondary" id="navDashboard">
           <svg class="bi d-block mx-auto mb-1" width="24" height="24">
             <use xlink:href="<?= BASE_URL ?>node_modules/bootstrap-icons/bootstrap-icons.svg#speedometer2"></use>
           </svg>
@@ -27,6 +27,16 @@
           Employee
         </a>
       </li>
+      <?php if (isset($this->isAdmin) && $this->isAdmin) : ?>
+        <li>
+          <a href="<?= BASE_URL ?>users" class="nav-link text-secondary" id="navUsers">
+            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+              <use xlink:href="<?= BASE_URL ?>node_modules/bootstrap-icons/bootstrap-icons.svg#gear-wide"></use>
+            </svg>
+            Users
+          </a>
+        </li>
+      <?php endif; ?>
     </ul>
 
     <div class="dropdown text-end">
@@ -54,12 +64,23 @@
   <script>
     let url = window.location.href;
     let parts = url.split('/');
-    if (parts[5] === "employeeForm" || parts[5] === "renderEmployee") {
-      $('#navEmployee').toggleClass('text-white').removeClass('text-secondary');
-      $('#navDashboard').toggleClass('text-secondary').removeClass('text-white');
+
+    // Reset all nav-links
+    $('.nav-link').each(function() {
+      if ($(this).hasClass('text-white')) {
+        $(this).removeClass('text-white');
+      }
+      if (!$(this).hasClass('text-secondary')) {
+        $(this).addClass('text-secondary')
+      }
+    });
+
+    if (parts[5] === "employeeForm") {
+      $('#navEmployee').addClass('text-white').removeClass('text-secondary');
+    } else if (parts[4] === "users") {
+      $('#navUsers').removeClass('text-secondary').addClass('text-white');
     } else {
       $('#navDashboard').addClass('text-white').removeClass('text-secondary');
-      $('#navEmployee').addClass('text-secondary').removeClass('text-white');
     }
   </script>
 </header>

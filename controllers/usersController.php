@@ -12,13 +12,13 @@ class UsersController extends Controller
 
         if (empty($this->session->get('email')))
             header('Location:' . BASE_URL);
+
+        if ($this->isAdmin())
+            $this->view->isAdmin = true;
     }
 
     public function render()
     {
-        if ($this->isAdmin())
-            $this->view->isAdmin = true;
-
         $this->view->render('users/index');
     }
 
