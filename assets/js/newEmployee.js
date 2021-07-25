@@ -30,3 +30,14 @@ function removeClassInvalid() {
     if ($(this).hasClass("is-invalid")) $(this).removeClass("is-invalid");
   });
 }
+
+/**
+ * render required input validation
+ *
+ */
+$(".needs-validation input[required]").each(function () {
+  $(this).on("change", () => {
+    if ($(this).hasClass("is-invalid")) $(this).removeClass("is-invalid");
+    if (!this.validity.valid) $(this).addClass("is-invalid");
+  });
+});
