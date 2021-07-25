@@ -20,7 +20,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-secondary disabled" id="navEmployee">
+        <a href="<?= BASE_URL ?>employees/employeeForm" class="nav-link text-secondary" id="navEmployee">
           <svg class="bi d-block mx-auto mb-1" width="24" height="24">
             <use xlink:href="<?= BASE_URL ?>node_modules/bootstrap-icons/bootstrap-icons.svg#person-fill"></use>
           </svg>
@@ -46,5 +46,15 @@
       </ul>
     </div>
   </div>
+  <script>
+    let url = window.location.href;
+    let parts = url.split('/');
+    if (parts[5] === "employeeForm" || parts[5] === "renderEmployee") {
+      $('#navEmployee').toggleClass('text-white').removeClass('text-secondary');
+      $('#navDashboard').toggleClass('text-secondary').removeClass('text-white');
+    } else {
+      $('#navDashboard').addClass('text-white').removeClass('text-secondary');
+      $('#navEmployee').addClass('text-secondary').removeClass('text-white');
+    }
   </script>
 </header>

@@ -102,4 +102,29 @@ class EmployeesModel extends Model
             throw new Exception($e->getMessage());
         }
     }
+
+    public function insert(array $data) {
+        $age = (int)$data['age'];
+        $postalCode = (int)$data['age'];
+        $gender = isset($data['gender']) ? $data['gender'] : '';
+        $lastName = isset($data['lastName']) ? $data['lastName'] : '';
+        try {
+        $this->db->connect()->query("INSERT INTO employees (name, lastName, email, gender, age, address, city, state, postal_code, phone_number) 
+        VALUES 
+        ('{$data['name']}', 
+        '$lastName', 
+        '{$data['email']}', 
+        '$gender', 
+        '$age', 
+        '{$data['streetAddress']}', 
+        '{$data['city']}', 
+        '{$data['state']}', 
+        '$postalCode', 
+        '{$data['phoneNumber']}' )");
+
+        return true;
+        }   catch (PDOException $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 }

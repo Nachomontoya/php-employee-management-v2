@@ -38,11 +38,11 @@ $employee = array();
                 <h2 id="employeeTitle">Employee</h2>
             </div>
             <div class="col">
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" action="<?=BASE_URL?>employees/insertEmployeeByPost" method="POST" novalidate>
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="name" class="form-label">First name</label>
-                            <input type="text" class="form-control" id="name" placeholder="" value="" required>
+                            <input type="text" class="form-control" id="name" placeholder="" value="" name="name" required>
                             <div class="invalid-feedback">
                                 Valid first name is required.
                             </div>
@@ -50,11 +50,11 @@ $employee = array();
 
                         <div class="col-sm-6">
                             <label for="lastName" class="form-label">Last name</label>
-                            <input type="text" class="form-control" id="lastName" value="">
+                            <input type="text" class="form-control" id="lastName" value="" name="lastName">
                         </div>
                         <div class="col-md-8">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" value="" required>
+                            <input type="email" class="form-control" id="email" value="" name="email" required>
                             <div class="invalid-feedback">
                                 Please enter a valid email address.
                             </div>
@@ -62,7 +62,7 @@ $employee = array();
                         </div>
                         <div class="col-md-4">
                             <label for="gender" class="form-label">Gender</label>
-                            <select class="form-select" id="gender">
+                            <select class="form-select" id="gender" name="gender">
                                 <option value="">Choose...</option>
                                 <option value="woman">Woman</option>
                                 <option value="man">Man</option>
@@ -73,42 +73,42 @@ $employee = array();
 
                         <div class="col-sm-6">
                             <label for="city" class="form-label">City</label>
-                            <input type="text" class="form-control" id="city" value="" required>
+                            <input type="text" class="form-control" id="city" value="" name="city" required>
                             <div class="invalid-feedback">
                                 Please enter the employee's city.
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="streetAddress" class="form-label">Street Address</label>
-                            <input type="text" class="form-control" id="streetAddress" value="" required>
+                            <input type="text" class="form-control" id="streetAddress" value="" name="streetAddress" required>
                             <div class="invalid-feedback">
                                 Please enter the street number.
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="state" class="form-label">State</label>
-                            <input type="text" class="form-control" id="state" value="" required>
+                            <input type="text" class="form-control" id="state" value="" name="state" required>
                             <div class="invalid-feedback">
                                 Please enter the state.
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="age" class="form-label">Age</label>
-                            <input type="number" class="form-control" id="age" value="" required>
+                            <input type="number" class="form-control" id="age" value="" name="age" required>
                             <div class="invalid-feedback">
                                 Please enter the employee's age.
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="postalCode" class="form-label">Postal Code</label>
-                            <input type="text" class="form-control" id="postalCode" value="" required>
+                            <input type="number" class="form-control" id="postalCode" value="" name="postalCode" required>
                             <div class="invalid-feedback">
                                 Please enter the employee's postal code.
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="phoneNumber" class="form-label">Phone Number</label>
-                            <input type="number" class="form-control" id="phoneNumber" value="" required>
+                            <input type="number" class="form-control" id="phoneNumber" value="" name="phoneNumber" required>
                             <div class="invalid-feedback">
                                 Please enter the phone number.
                             </div>
@@ -116,7 +116,7 @@ $employee = array();
                     </div>
 
                     <div class="text-center pt-4">
-                        <button type="submit" class="btn btn-primary" id="submitBtn">Update Employee</button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Create Employee</button>
                         <a href="<?= BASE_URL ?>" class="btn btn-secondary">Return</a>
 
                     </div>
@@ -125,21 +125,7 @@ $employee = array();
                 <div id="responseMsg"></div>
             </div>
     </div>
-    <div class="modal fade" id="errorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-dialog-centered">
-            <div class="modal-content bg-danger">
-                <div class="modal-header border-0">
-                    <h3 class="modal-title text-light mx-auto" id="errorModalLabel">Error!</h3>
-                </div>
-                <div class="modal-body text-center text-light h5">
-                    This id is not related to any user
-                </div>
-                <div class="modal-footer border-0">
-                    <a href="<?= BASE_URL ?>" class="btn btn-light mx-auto">Go back to dashboard</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div class="modal fade" id="successfulAddModal" tabindex="-1" aria-labelledby="successfulAddModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
@@ -161,12 +147,6 @@ $employee = array();
     <?php
     include_once  VIEWS . "/footer.php";
     ?>
-
-    <script>
-        let userId = <?= $this->id ?>;
-        let baseUrl = '<?= BASE_URL ?>';
-    </script>
-    <script type="text/javascript" src="<?= BASE_URL ?>/assets/js/employee.js"></script>
 
 </body>
 

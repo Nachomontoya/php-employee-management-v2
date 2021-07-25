@@ -155,12 +155,12 @@
     <script type="text/javascript" src="../assets/js/employee.js"></script>
     <?php
 
-    if (isset($_GET["id"])) {
-        echo "<script type='text/javascript'>setUserId(" . $_GET["id"] . ")</script>";
-        echo "<script type='text/javascript'>populateEmployeeForm()</script>";
-    } elseif (isset($_GET["new"]) && $_GET["new"] === "true") {
-        echo "<script type='text/javascript'>newEmployeeForm();</script>";
-    }
+    // if (isset($_GET["id"])) {
+    //     echo "<script type='text/javascript'>setUserId(" . $_GET["id"] . ")</script>";
+    //     echo "<script type='text/javascript'>populateEmployeeForm()</script>";
+    // } elseif (isset($_GET["new"]) && $_GET["new"] === "true") {
+    //     echo "<script type='text/javascript'>newEmployeeForm();</script>";
+    // }
     ?>
 
     <?php
