@@ -25,7 +25,7 @@
         <div class="login-form p-5 rounded-5 d-flex flex-column justify-content-between max-width-450 bg-light">
             <div class="h-25 text-center">
                 <h2>Welcome</h2>
-                <p>Login to start</p>
+                <p>Log in to start</p>
             </div>
             <form class="d-flex flex-column align-items-center" id="formLogin" action="<?= BASE_URL ?>login/signIn" method="post">
                 <div class="mb-3 w-100">
