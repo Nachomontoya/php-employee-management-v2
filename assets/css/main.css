@@ -15,3 +15,12 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.bg-blue {
+  /* background-color: rgb(87, 147, 254); */
+  background-color: rgb(58, 134, 180);
+}
+
+.text-secondary-blue {
+  color: rgba(34, 58, 73, 0.774);
+}

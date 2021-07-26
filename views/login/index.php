@@ -25,20 +25,23 @@
 
 <body>
     <div class="d-flex login-container align-items-center justify-content-center">
-        <div class="login-form p-5 rounded">
-            <h3>Login</h3>
-            <form id="formLogin" action="<?= BASE_URL ?>login/signIn" method="post">
-                <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Your Email *" value="" name="email" required />
+        <div class="login-form p-5 rounded-5 d-flex flex-column justify-content-between max-width-450 bg-light">
+            <div class="h-25 text-center">
+                <h2>Welcome</h2>
+                <p>Login to start</p>
+            </div>
+            <form class="d-flex flex-column align-items-center" id="formLogin" action="<?= BASE_URL ?>login/signIn" method="post">
+                <div class="mb-3 w-100">
+                    <input type="email" class="form-control rounded-4 py-2 border-0" placeholder="Your Email *" value="" name="email" required />
                 </div>
-                <div class="mb-3">
-                    <input type="password" class="form-control" placeholder="Your Password *" name="password" value="" required />
+                <div class="mb-3 w-100">
+                    <input type="password" class="form-control rounded-4 py-2 border-0" placeholder="Your Password *" name="password" value="" required />
                 </div>
-                <div class="mb-3">
-                    <input type="submit" class="btn btnSubmit" value="Login" />
+                <div class="my-3 w-100 text-center">
+                    <input type="submit" class="btn btnSubmit rounded-4 py-2 border-0" value="Sign In" />
                 </div>
             </form>
-            <div class="text-danger">
+            <div class="text-danger text-center">
                 <?php
                 echo $this->message;
                 ?>
