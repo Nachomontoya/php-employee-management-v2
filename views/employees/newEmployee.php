@@ -38,7 +38,7 @@ $employee = array();
                 <h2 id="employeeTitle">Employee</h2>
             </div>
             <div class="col">
-                <form class="needs-validation" action="<?=BASE_URL?>employees/insertEmployeeByPost" method="POST" novalidate>
+                <form class="needs-validation" action="<?= BASE_URL ?>employees/insertEmployeeByPost" method="POST" novalidate>
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="name" class="form-label">First name</label>
@@ -125,7 +125,7 @@ $employee = array();
                 <div id="responseMsg"></div>
             </div>
     </div>
-    
+
     <div class="modal fade" id="successfulAddModal" tabindex="-1" aria-labelledby="successfulAddModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
@@ -147,6 +147,8 @@ $employee = array();
     <?php
     include_once  VIEWS . "/footer.php";
     ?>
+
+    <script type="text/javascript" src="<?= BASE_URL ?>/assets/js/newEmployee.js"></script>
 
 </body>
 
