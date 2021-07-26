@@ -26,10 +26,15 @@ class Database
         PDO::ATTR_EMULATE_PREPARES => false,
       ];
 
-      $pdo = new PDO($connection, $this->user, $this->password, $options);
-      return $pdo;
+      $this->pdo = new PDO($connection, $this->user, $this->password, $options);
+      return $this->pdo;
     } catch (PDOException $error) {
       throw new Exception($error->getMessage());
     }
+  }
+
+  public function __destruct()
+  {
+    $this->pdo = null;
   }
 }

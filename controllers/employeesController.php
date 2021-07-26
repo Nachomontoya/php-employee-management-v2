@@ -89,7 +89,6 @@ class EmployeesController extends Controller
 
     public function insertEmployeeByPost()
     {
-        //TODO needs to validate forms fields;
         try {
             $this->model->insert($_POST);
             http_response_code(200);
@@ -104,7 +103,6 @@ class EmployeesController extends Controller
     public function insertEmployeeByAjax()
     {
         try {
-            parse_str(file_get_contents("php://input"), $_POST);
             $this->model->insert($_POST);
             http_response_code(200);
             echo json_encode(['message' =>  "employee {$_POST['name']} created"]);

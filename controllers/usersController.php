@@ -25,7 +25,6 @@ class UsersController extends Controller
     public function getAllUsers()
     {
         try {
-            // HTTP_X_REQUESTED_WITH: "XMLHttpRequest"
             $users = $this->model->getAll();
             foreach ($users->all() as $user) {
                 if ($user->name == 'admin') {
