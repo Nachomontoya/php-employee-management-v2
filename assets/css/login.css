@@ -10,7 +10,7 @@ body {
   height: 100vh;
 }
 .login-form {
-  height: 50%;
+  min-height: 400px;
   width: 50%;
   background: #282726;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
