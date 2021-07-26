@@ -21,4 +21,11 @@ abstract class Controller
             $this->model = new $modelName();
         }
     }
+
+    protected function isAdmin()
+    {
+        $this->session->init();
+        if ($this->session->get('email') == "admin@assemblerschool.com")
+            return true;
+    }
 }

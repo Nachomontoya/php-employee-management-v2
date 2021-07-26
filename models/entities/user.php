@@ -9,8 +9,8 @@ class User
         string $email,
         string $password
     ) {
-        $this->name = $id;
-        $this->lastName = $name;
+        $this->id = $id;
+        $this->name = $name;
         $this->email = $email;
         $this->password = $password;
     }

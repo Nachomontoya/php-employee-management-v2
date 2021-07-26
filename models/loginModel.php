@@ -1,16 +1,17 @@
 <?php
 
-require_once(MODELS . '/entities/users.php');
+require_once(MODELS . '/entities/user.php');
 
-class LoginModel extends Model{
+class LoginModel extends Model
+{
 
-  function __construct()
+    function __construct()
     {
         parent::__construct();
     }
-  
-  public function get($params)
-  {
+
+    public function get($params)
+    {
         $email = $params['email'];
         // $password = $params['password'];
         try {
@@ -27,9 +28,8 @@ class LoginModel extends Model{
                 // $items[] = $item;
             }
             return $item;
-
         } catch (PDOException $e) {
             throw new Exception($e->getMessage());
         }
-  }
+    }
 }
