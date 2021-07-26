@@ -1,4 +1,4 @@
-<header class="p-3 mb-3 border-bottom bg-dark text-white">
+<header class="p-3 mb-3 border-bottom bg-blue text-white">
   <div class="d-flex flex-wrap align-items-center justify-content-between">
     <a href="<?= BASE_URL ?>" class="
         d-flex
@@ -12,7 +12,7 @@
 
     <ul class="nav col-lg-auto mb-2 justify-content-center mb-md-0">
       <li>
-        <a href="<?= BASE_URL ?>" class="nav-link text-secondary" id="navDashboard">
+        <a href="<?= BASE_URL ?>" class="nav-link" id="navDashboard">
           <svg class="bi d-block mx-auto mb-1" width="24" height="24">
             <use xlink:href="<?= BASE_URL ?>node_modules/bootstrap-icons/bootstrap-icons.svg#speedometer2"></use>
           </svg>
@@ -20,7 +20,7 @@
         </a>
       </li>
       <li>
-        <a href="<?= BASE_URL ?>employees/employeeForm" class="nav-link text-secondary" id="navEmployee">
+        <a href="<?= BASE_URL ?>employees/employeeForm" class="nav-link" id="navEmployee">
           <svg class="bi d-block mx-auto mb-1" width="24" height="24">
             <use xlink:href="<?= BASE_URL ?>node_modules/bootstrap-icons/bootstrap-icons.svg#person-fill"></use>
           </svg>
@@ -29,7 +29,7 @@
       </li>
       <?php if (isset($this->isAdmin) && $this->isAdmin) : ?>
         <li>
-          <a href="<?= BASE_URL ?>users" class="nav-link text-secondary" id="navUsers">
+          <a href="<?= BASE_URL ?>users" class="nav-link" id="navUsers">
             <svg class="bi d-block mx-auto mb-1" width="24" height="24">
               <use xlink:href="<?= BASE_URL ?>node_modules/bootstrap-icons/bootstrap-icons.svg#gear-wide"></use>
             </svg>
@@ -70,17 +70,17 @@
       if ($(this).hasClass('text-white')) {
         $(this).removeClass('text-white');
       }
-      if (!$(this).hasClass('text-secondary')) {
-        $(this).addClass('text-secondary')
+      if (!$(this).hasClass('text-secondary-blue')) {
+        $(this).addClass('text-secondary-blue')
       }
     });
 
     if (parts[5] === "employeeForm") {
-      $('#navEmployee').addClass('text-white').removeClass('text-secondary');
+      $('#navEmployee').addClass('text-white').removeClass('text-secondary-blue');
     } else if (parts[4] === "users") {
-      $('#navUsers').removeClass('text-secondary').addClass('text-white');
+      $('#navUsers').removeClass('text-secondary-blue').addClass('text-white');
     } else {
-      $('#navDashboard').addClass('text-white').removeClass('text-secondary');
+      $('#navDashboard').addClass('text-white').removeClass('text-secondary-blue');
     }
   </script>
 </header>
