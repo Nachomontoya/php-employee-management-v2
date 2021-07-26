@@ -13,7 +13,6 @@ class LoginModel extends Model
     public function get($params)
     {
         $email = $params['email'];
-        // $password = $params['password'];
         try {
             $item = [];
             $query = $this->db->connect()->query("SELECT * FROM users WHERE email = '{$email}'");
@@ -24,8 +23,6 @@ class LoginModel extends Model
                     $row['email'],
                     $row['password']
                 );
-
-                // $items[] = $item;
             }
             return $item;
         } catch (PDOException $e) {

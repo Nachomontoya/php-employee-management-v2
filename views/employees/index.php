@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
-<?php
-// require_once('./library/sessionHelper.php');
-?>
 
 <head>
     <meta charset="UTF-8">

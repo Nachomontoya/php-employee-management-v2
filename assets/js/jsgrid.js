@@ -1,25 +1,3 @@
-// const employeeUrl = "./library/employeeController.php";
-const employeeUrl = "./employees/getAllEmployees";
-
-// $.ajax({
-//   url: employeeUrl,
-//   method: "GET",
-//   dataType: "json",
-// })
-//   .done(function (response) {
-//     console.log(response);
-//     renderTable(response);
-//     $("#navEmployee")
-//       .attr("href", "./employee.php?new=true")
-//       .removeClass("disabled");
-//     $("#navEmployee svg use").attr(
-//       "xlink:href",
-//       "./node_modules/bootstrap-icons/bootstrap-icons.svg#person-plus-fill"
-//     );
-//   })
-//   .fail(function (response) {})
-//   .always(function () {});
-
 function insertItemHandler(item) {
   return $.ajax({
     type: "POST",
@@ -42,9 +20,6 @@ function deleteItemHandler(item) {
     url: `${baseUrl}employees/deleteEmployee/ + ${item.id}`,
     data: item,
     dataType: "json",
-    // success: function (response) {
-    //   console.log(response);
-    // },
     error: function (xhr, status) {
       console.log(xhr, status);
       let err = JSON.parse(xhr.responseText);
@@ -53,7 +28,6 @@ function deleteItemHandler(item) {
   });
 }
 
-// function renderTable(employeesJson = {}) {
 $("#jsGrid").jsGrid({
   width: "100%",
   height: "auto",
@@ -75,10 +49,6 @@ $("#jsGrid").jsGrid({
         type: "GET",
         url: `${baseUrl}employees/getAllEmployees`,
         dataType: "json",
-        // data: response,
-        // success: function (response) {
-        //   console.log(response);
-        // },
         error: function (xhr, status) {
           console.log(xhr, status);
           let err = JSON.parse(xhr.responseText);
@@ -93,8 +63,6 @@ $("#jsGrid").jsGrid({
       deleteItemHandler(item);
     },
   },
-
-  // data: employeesJson,
 
   fields: [
     { name: "id", title: "id", type: "text", visible: false },
@@ -157,7 +125,6 @@ $("#jsGrid").jsGrid({
     { type: "control", width: 1, editButton: false },
   ],
 });
-// }
 
 function renderError(message = "Error", element = "header") {
   $(element).after(

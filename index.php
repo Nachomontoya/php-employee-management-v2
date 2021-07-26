@@ -1,8 +1,5 @@
 <?php
 
-// require_once('./src/library/sessionHelper.php');
-
-// require_once 'libs/database.php';
 require_once("config/constants.php");
 require_once LIBS . '/database.php';
 require_once LIBS . '/model.php';

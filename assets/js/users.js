@@ -79,9 +79,6 @@ $("#jsGrid").jsGrid({
         },
       });
     },
-    // deleteItem: function (item) {
-    //   deleteItemHandler(item);
-    // },
   },
 
   fields: [
